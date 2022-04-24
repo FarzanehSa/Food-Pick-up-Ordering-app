@@ -29,67 +29,26 @@
       </div>
     </div>
     <div class="menu-items">
-    <div class="food-item">
-      <img src="https://tacotimecanada.com/wp-content/uploads/2020/12/TT_MexiFries_Deluxe.jpg">
-      <div>
-        <div>
-          <span>Mexi-Fries® Deluxe</span>
-          <span>574</span>
-        </div>
-        <div class="cart-addition">
-          <i class="fa-solid fa-circle-minus"></i>
-          <output name="counter" class="counter button" for="tweet-text">0</output>
-          <i class="fa-solid fa-circle-plus"></i>
-          <span>Add to cart</span>
-        </div>
-      </div>
+      <% if (menuItems) { %>
+        <% for (const menuItem of menuItems) { %>
+            <div class="food-item">
+            <img src="<%= menuItem.image_url %>"/>
+            <div>
+              <div>
+                <span><%= menuItem.name %></span>
+                <span><%= menuItem.price / 100 %></span>
+              </div>
+              <div class="cart-addition">
+                <i class="fa-solid fa-circle-minus"></i>
+                <output name="counter" class="counter button" for="tweet-text">0</output>
+                <i class="fa-solid fa-circle-plus"></i>
+                <span>Add to cart</span>
+              </div>
+            </div>
+            </div>
+        <% } %>
+      <% } %>
     </div>
-    <div class="food-item">
-      <img src="https://thekitchencommunity.org/wp-content/uploads/2021/02/Beef-Burrito-Recipe.jpg">
-      <div>
-        <div>
-          <span>Classic Beef Burrito</span>
-          <span>689</span>
-        </div>
-        <div class="cart-addition">
-          <i class="fa-solid fa-circle-minus"></i>
-          <output name="counter" class="counter button" for="tweet-text">0</output>
-          <i class="fa-solid fa-circle-plus"></i>
-          <span>Add to cart</span>
-        </div>
-      </div>
-    </div>
-    <div class="food-item">
-      <img src="https://static.wikia.nocookie.net/tacobell/images/9/93/Taco-supreme-2_sm.JPG/revision/latest/scale-to-width-down/1200?cb=20130717123434">
-      <div>
-        <div>
-          <span>Beef Taco</span>
-          <span>3.44</span>
-        </div>
-        <div class="cart-addition">
-          <i class="fa-solid fa-circle-minus"></i>
-          <output name="counter" class="counter button" for="tweet-text">0</output>
-          <i class="fa-solid fa-circle-plus"></i>
-          <span>Add to cart</span>
-        </div>
-      </div>
-    </div>
-    <div class="food-item">
-      <img src="http://partaste.com/worldrecipes/wp-content/uploads/sites/2/2015/06/tacos_de_pollo.jpg">
-      <div>
-        <div>
-          <span>Chicken Taco</span>
-          <span>3.44</span>
-        </div>
-        <div class="cart-addition">
-          <i class="fa-solid fa-circle-minus"></i>
-          <output name="counter" class="counter button" for="tweet-text">0</output>
-          <i class="fa-solid fa-circle-plus"></i>
-          <span>Add to cart</span>
-        </div>
-      </div>
-    </div>
-  </div>
   </nav>
 </body>
 </html>
