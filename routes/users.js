@@ -29,7 +29,6 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     console.log('🛗 req.body: ',req.body)       // 🚨🚨🚨
     curUserId = req.body.id;
-    // db.query(`SELECT access_level FROM users WHERE id = $1;`, [curUserId])
     getUserById(db, curUserId)
       .then(data => {
         const accessLevel = data.rows[0].access_level;

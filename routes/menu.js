@@ -6,24 +6,25 @@
 */
 
 const express = require('express');
-// const { getUserById } = require('../db/queries/database');
+const { getAllMenuItems } = require('../db/queries/database');
 const router  = express.Router();
 
 module.exports = (db) => {
-  // get/users
-  // Check cookies, if it's not set render login page
-  // Otherwise redirect to menu page
   router.get("/", (req, res) => {
-    // const userId = req.session.userId;
-    // console.log('🛗 user id: ', userId);      // 🚨🚨🚨
-    // if (!userId) {
-    //   res.render("login");
-    //   return;
-    // }
-    res.render("menu");
+    console.log('🛗 req.body: ',req.body)       // 🚨🚨🚨
+    getAllMenuItems(db)
+      .then(data => {
+        console.log(data.rows)
+        menuItems = data.rows
+        res.render("menu",{menuItems});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    // res.render("menu");
   });
-
-
 
   return router;
 };
