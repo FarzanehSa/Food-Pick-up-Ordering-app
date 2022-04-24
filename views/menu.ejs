@@ -12,6 +12,8 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <script type="text/javascript" src="/scripts/cart-counter.js"></script>
 </head>
 
 <body>
@@ -39,9 +41,9 @@
                 <span><%= menuItem.price / 100 %></span>
               </div>
               <div class="cart-addition">
-                <i class="fa-solid fa-circle-minus"></i>
-                <output name="counter" class="counter button" for="tweet-text">0</output>
-                <i class="fa-solid fa-circle-plus"></i>
+                <button name="minus"><i class="fa-solid fa-circle-minus"></i></button>
+                <output name="counter" class="counter button">0</output>
+                <button name="plus"><i class="fa-solid fa-circle-plus"></i></button>
                 <span>Add to cart</span>
               </div>
             </div>
