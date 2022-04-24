@@ -1,0 +1,36 @@
+body {
+  margin: 1em;
+}
+
+.restaurant-name {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+img {
+  width: 250px;
+  margin-right: 0.5em;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.cart-addition {
+  margin-top: 1em;
+}
+
+.menu-items {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+}
