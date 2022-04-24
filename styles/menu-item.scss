@@ -1,0 +1,37 @@
+.item-desc {
+  border: solid;
+}
+
+.img-cart {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+}
+
+.whole-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  border: 3px solid;
+  margin: 3em 17em 0 17em;
+}
+
+.single-item-cart {
+  text-align: center;
+  margin-bottom: 1em;
+  border: solid;
+}
+
+.name-price-desc {
+  margin-right: 3em;
+}
+
+img {
+  width: 350px;
+}
+
+.price {
+  margin-left: 1em;
+  font-weight: bold;
+}
