@@ -9,13 +9,13 @@ const { getAllMenuItems, getItemById } = require('../db/queries/database');
 const router  = express.Router();
 
 module.exports = (db) => {
+  // get menu/
+  // Rendering menu.ejs with data from DB, menu_item table
   router.get("/", (req, res) => {
-    console.log('🛗 req.body: ',req.body)       // 🚨🚨🚨
     getAllMenuItems(db)
       .then(data => {
-        console.log(data.rows)
         menuItems = data.rows
-        res.render("menu",{menuItems});
+        res.render("menu", { menuItems });
       })
       .catch(err => {
         res
@@ -24,8 +24,9 @@ module.exports = (db) => {
       });
   });
 
+  // menu/:id
+  // rendering page related to requested id
   router.get("/:id", (req, res) => {
-    console.log('🛗 req.body: ',req.body)       // 🚨🚨🚨
     const curId = req.params.id;
     getItemById(db, curId)
       .then(data => {
@@ -38,9 +39,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-
-
   return router;
 };
 

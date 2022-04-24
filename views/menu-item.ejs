@@ -31,7 +31,7 @@
     </div>
     <div class="whole-item">
       <div class="img-cart">
-        <img src="https://tacotimecanada.com/wp-content/uploads/2020/12/TT_MexiFries_Deluxe.jpg">
+        <img src="<%= menuItem.image_url %>">
         <div class="single-item-cart">
           <i class="fa-solid fa-circle-minus"></i>
           <output name="counter" class="counter button" for="tweet-text">0</output>
@@ -41,11 +41,11 @@
       </div>
       <div class="name-price-desc">
         <div>
-          <span>Mexi-Fries® Deluxe</span>
-          <span class="price">$574</span>
+          <span><%= menuItem.name %></span>
+          <span class="price">$<%= menuItem.price %></span>
         </div>
         <div class="item-desc">
-          <span>Description</span>
+          <span><%= menuItem.description %></span>
         </div>
       </div>
     </div>
