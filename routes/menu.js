@@ -30,7 +30,7 @@ module.exports = (db) => {
     getItemById(db, curId)
       .then(data => {
         menuItem = data.rows[0];
-        // res.render("menu",{menuItem});
+        res.render("menu-item",{menuItem});
       })
       .catch(err => {
         res
