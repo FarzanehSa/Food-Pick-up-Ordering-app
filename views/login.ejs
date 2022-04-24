@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <form id="login-form" class="login-form" action="/users" method="POST">
+    <p>Login</p>
+    <div class="login-form__field-wrapper">
+      <input type="id" name="id" placeholder="id">
+    </div>
+
+    <div class="login-form__field-wrapper">
+        <button>Login</button>
+        <a id="login-form__cancel" href="#">Cancel</a>
+    </div>
+  </form>
+</body>
+
+</html>
