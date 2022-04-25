@@ -8,9 +8,17 @@
         <button>Order History</button>
       </div>
       <div class = "right-buttons">
-        <span><i class="fa-solid fa-cart-shopping"></i></span>
-
-        <button>User</button>
+        <!-- <span><i class="fa-solid fa-cart-shopping"></i></span> -->
+        <form  class="goToCheckout button" action="orders" method="POST">
+          <button type="submit" >
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span><%= 0 %></span>
+          </button>
+        </form>
+        <form  class="logoutForm" action="users/logout" method="POST">
+          <label style="margin: 1em">Hi <%= user.name %> ! </label>
+          <button type="submit" >Logout</button>
+        </form>
       </div>
     </div>
   </nav>
