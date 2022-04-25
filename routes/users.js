@@ -14,9 +14,9 @@ module.exports = (db) => {
   // Check cookies, if it's not set render login page
   // Otherwise redirect to menu page
   router.get("/", (req, res) => {
-    const userId = req.session.userId;
-    console.log('🛗 user id: ', userId);      // 🚨🚨🚨
-    if (!userId) {
+    const user = req.session.user;
+    console.log('🛗 user : ', user);      // 🚨🚨🚨
+    if (!user) {
       res.render("login");
       return;
     }
@@ -31,9 +31,10 @@ module.exports = (db) => {
     curUserId = req.body.id;
     getUserById(db, curUserId)
       .then(data => {
-        const accessLevel = data.rows[0].access_level;
-        req.session.userId = req.body.id;
-        req.session.accessLevel= accessLevel;
+        const user = data.rows[0];
+        req.session.user= user;
+        req.session.userId = user.id;
+        req.session.accessLevel= user.access_level;
         console.log('🛗 cookei ', req.session)   // 🚨🚨🚨
         res.redirect("/menu");
         return;
@@ -47,9 +48,10 @@ module.exports = (db) => {
 
   // 🛑 NOT COMPLETE
   router.post('/logout', (req, res) => {
+    req.session.user = null;
     req.session.userId = null;
     req.session.accessLevel = null;
-    // res.send({});
+    res.redirect("/users");
   });
 
   return router;

@@ -12,10 +12,14 @@ module.exports = (db) => {
   // get menu/
   // Rendering menu.ejs with data from DB, menu_item table
   router.get("/", (req, res) => {
+    const user = req.session.user;
+    if (!user)  {
+      res.redirect("/users");
+    }
     getAllMenuItems(db)
       .then(data => {
         menuItems = data.rows
-        res.render("menu", { menuItems });
+        res.render("menu", { menuItems, user});
       })
       .catch(err => {
         res
@@ -27,11 +31,15 @@ module.exports = (db) => {
   // menu/:id
   // rendering page related to requested id
   router.get("/:id", (req, res) => {
+    const user = req.session.user;
+    if (!user)  {
+      res.redirect("/users");
+    }
     const curId = req.params.id;
     getItemById(db, curId)
       .then(data => {
         menuItem = data.rows[0];
-        res.render("menu-item",{menuItem});
+        res.render("menu-item",{ menuItem, user });
       })
       .catch(err => {
         res
