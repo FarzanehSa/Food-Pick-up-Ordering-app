@@ -1,5 +1,6 @@
 .item-desc {
-  border: solid;
+  display: flex;
+  flex-direction: column;
 }
 
 .img-cart {
@@ -10,21 +11,28 @@
 
 .whole-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   font-size: 20px;
   border: 3px solid;
-  margin: 3em 17em 0 17em;
+  margin: 3em auto 0 auto;
+  width: 800px;
 }
 
 .single-item-cart {
   text-align: center;
   margin-bottom: 1em;
-  border: solid;
 }
 
 .name-price-desc {
-  margin-right: 3em;
+  margin-right: 2em;
+}
+
+.name-price {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em
 }
 
 img {
@@ -32,6 +40,13 @@ img {
 }
 
 .price {
-  margin-left: 1em;
   font-weight: bold;
+}
+
+@media (max-width:830px) {
+  .whole-item {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
