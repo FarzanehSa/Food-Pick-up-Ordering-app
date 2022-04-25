@@ -23,12 +23,14 @@
       <% if (menuItems) { %>
         <% for (const menuItem of menuItems) { %>
           <div class="food-item">
-            <img src="<%= menuItem.image_url %>"/>
+            <a href="http://localhost:8080/menu/<%= menuItem.id %>">
+            <button name="click-item" class = "item-img"><img src="<%= menuItem.image_url %>"/></button>
+            </a>
             <div>
               <div>
                 <span><%= menuItem.name %></span>
-                <span><%= menuItem.price / 100 %></span>
               </div>
+              <span>$ <%= menuItem.price / 100 %></span>
               <div class="cart-addition">
                 <button name="minus"><i class="fa-solid fa-circle-minus"></i></button>
                 <output name="counter" class="counter button">0</output>
