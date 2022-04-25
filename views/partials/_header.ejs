@@ -9,13 +9,14 @@
       </div>
       <div class = "right-buttons">
         <!-- <span><i class="fa-solid fa-cart-shopping"></i></span> -->
-        <form  class="goToCheckout button" action="orders" method="POST">
+        <form  class="go-to-checkout button" action="orders" method="POST">
           <button type="submit" >
             <i class="fa-solid fa-cart-shopping"></i>
-            <span><%= 0 %></span>
+            <output id="main-cart-qty">0</output>
+
           </button>
         </form>
-        <form  class="logoutForm" action="users/logout" method="POST">
+        <form  class="logout-form" action="users/logout" method="POST">
           <label style="margin: 1em">Hi <%= user.name %> ! </label>
           <button type="submit" >Logout</button>
         </form>
