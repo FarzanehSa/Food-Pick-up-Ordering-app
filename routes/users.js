@@ -48,9 +48,7 @@ module.exports = (db) => {
 
   // 🛑 NOT COMPLETE
   router.post('/logout', (req, res) => {
-    req.session.user = null;
-    req.session.userId = null;
-    req.session.accessLevel = null;
+    req.session = null;
     res.redirect("/users");
   });
 
