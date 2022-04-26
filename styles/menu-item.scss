@@ -1,46 +1,88 @@
-.item-desc {
-  display: flex;
-  flex-direction: column;
-}
+@import '_variables';
 
-.img-cart {
-  display: flex;
-  flex-direction: column;
-  margin-left: 2em;
-}
+main {
+  .whole-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    border: 3px solid;
+    margin: 1em auto 0 auto;
+    width: 800px;
 
-.whole-item {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 20px;
-  border: 3px solid;
-  margin: 3em auto 0 auto;
-  width: 800px;
-}
+    .img-cart {
+      display: flex;
+      flex-direction: column;
+      margin-left: 2em;
 
-.single-item-cart {
-  text-align: center;
-  margin-bottom: 1em;
-}
+      img {
+        margin-top: 1em;
+        width: 320px;
+      }
 
-.name-price-desc {
-  margin-right: 2em;
-}
+      .single-item-cart {
+        text-align: center;
+        margin-bottom: 1em;
+        margin-top: 1em;
 
-.name-price {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 1em
-}
+        .minus-qty-item{
+          border:none;
+          background-color: transparent;
+          color: black;
 
-img {
-  width: 350px;
-}
+          &:hover {
+            color: red;
+            cursor: pointer;
+          }
+        }
 
-.price {
-  font-weight: bold;
+        .plus-qty-item {
+          border:none;
+          background-color: transparent;
+          color: black;
+
+          &:hover {
+            color: red;
+            cursor: pointer;
+          }
+        }
+
+        .add-to-cart {
+          color: $button-font-color;
+          border:none;
+          background-color: $menu-background-color;
+          border-radius: 16px;
+          padding: 8px 14px;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $button-hover-background-color;
+          }
+        }
+      }
+    }
+
+    .name-price-desc {
+      margin-right: 2em;
+      margin-left: 1em;
+
+      .name-price {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1em;
+
+        .price {
+          font-weight: bold;
+        }
+      }
+
+      .item-desc {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 }
 
 @media (max-width:830px) {
