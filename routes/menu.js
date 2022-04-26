@@ -5,6 +5,7 @@
 */
 
 const express = require('express');
+const { cookie } = require('express/lib/response');
 const { getAllMenuItems, getItemById } = require('../db/queries/database');
 const router  = express.Router();
 
@@ -13,6 +14,7 @@ module.exports = (db) => {
   // Rendering menu.ejs with data from DB, menu_item table
   router.get("/", (req, res) => {
     const user = req.session.user;
+    console.log('🆘',req.cookies);
     if (!user)  {
       res.redirect("/users");
     }
