@@ -1,0 +1,71 @@
+@import '_variables';
+
+header {
+  position    : sticky;
+  top         : 0;
+  width       : 100%;
+  height      : 120px;
+  // border      : $test;
+  background-color: $main-background-color;
+
+  .nav-bar {
+    margin: 0em 1em 0em 1em;
+    background-color: $nav-background-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // border: 2px solid black;
+  }
+
+  .right-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    width: 110px;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: $button-font-color
+  }
+
+  .nav-button {
+    border: none;
+    color: $button-font-color;
+    background-color: $menu-background-color;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    &:hover {
+      background-color: $button-hover-background-color;
+    }
+  }
+
+
+}
+// header {
+//   margin : 1em;
+//   background-color: aqua;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+
+//   .logo img {
+//     width: 130px;
+//   }
+
+//   nav .right-buttons {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//   }
+// }
+
