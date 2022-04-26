@@ -49,4 +49,10 @@ $(document).ready(function() {
 
     }
   });
+
+  // NOT COMPLETE (Need to modify once we have several items in checkout)
+  $('.delete-button').click(function() {
+    const itemCounter = $(this).parents().find('.price-on-right');
+    itemCounter.remove();
+  });
 });
