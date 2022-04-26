@@ -1,52 +1,99 @@
-body {
-  margin: 1em;
+@import '_variables';
+
+main {
+  .menu-items {
+    font-size: 20px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+  }
+  .food-item {
+
+    border: 1px solid black;;
+    border-radius:10%;
+    height: 220px;
+    // width: 30%;
+    min-width: 32%;
+    width: 400px;
+    min-width: 32%;
+
+    background-color: $item-box-background-color;
+    display: flex;
+    align-items: center;
+    flex-wrap:nowrap;
+    margin-top: 2em;
+  }
+
+  .item-img {
+    border: none;
+    background: none;
+    margin-right: 1em;
+
+    img {
+      border-radius: 50%;
+      width: 200px;
+      margin-right: 0.5em;
+    }
+    &:hover {
+      border-radius: 50%;
+      box-shadow: 0 0.5em 0.5em -0.3em;
+      cursor: pointer;
+    }
+  }
+
+  .item-info {
+    margin-right: 0.5em;
+    margin-bottom: 0.3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // border: $test;
+    height: 200px;
+    width: 65%;
+
+    .item-name {
+      text-align: center;
+      margin-top: 0.2em;
+      margin-bottom: 0.4em;
+    }
+
+    .item-price {
+      color: red;
+    }
+
+    .cart-addition {
+      margin: 1em 0em 0.5em 0em;
+
+      .minus-plus {
+        border:none;
+        background-color: transparent;
+        color: black;
+
+        &:hover {
+          color: red;
+          cursor: pointer;
+        }
+      }
+    }
+    .add-to-cart {
+      border: none;
+      color: $button-font-color;
+      padding: 8px 14px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 16px;
+      background-color: $menu-background-color;
+      &:hover {
+        background-color: $button-hover-background-color;
+      }
+    }
+
+  }
 }
 
-.restaurant-name {
-  font-size: 25px;
-  font-weight: bold;
-  margin-right: 1em;
-}
 
-.nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-nav .right-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-img {
-  width: 200px;
-  margin-right: 0.5em;
-}
-
-.item-img {
-  border: none;
-  background: none;
-  margin-right: 1em;
-}
-
-.item-img:hover {
-  box-shadow: 0 0.5em 0.5em -0.3em;
-}
-
-.food-item {
-  display: flex;
-  align-items: center;
-  margin-top: 2em;
-}
-
-.cart-addition {
-  margin-top: 1em;
-}
-
-.menu-items {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-}

@@ -1,23 +1,25 @@
 <header>
   <nav>
     <div class = "nav-bar">
-      <div>
-        <span class = "restaurant-name">Restaurant name</span>
-        <button>Menu</button>
-        <button>Pending Orders</button>
-        <button>Order History</button>
+      <div class="logo">
+        <img src="/images/logo.png">
+      </div>
+      <div class="left-buttons">
+        <button class="nav-button"><a class="nav-link" href="/menu">Menu</a></button>
+        <button class="nav-button"><a class="nav-link" href="/orders">Pending Orders</a></button>
+        <button class="nav-button"><a class="nav-link" href="/history">Order History</a></button>
       </div>
       <div class = "right-buttons">
         <!-- <span><i class="fa-solid fa-cart-shopping"></i></span> -->
         <form  class="goToCheckout button" action="orders" method="POST">
-          <button type="submit" >
+          <button type="submit" class="nav-button">
             <i class="fa-solid fa-cart-shopping"></i>
             <output id="main-cart-qty">0</output>
           </button>
         </form>
         <form  class="logoutForm" action="users/logout" method="POST">
           <label style="margin: 1em">Hi <%= user.name %> ! </label>
-          <button type="submit" >Logout</button>
+          <button class="nav-button" type="submit" >Logout</button>
         </form>
       </div>
     </div>
