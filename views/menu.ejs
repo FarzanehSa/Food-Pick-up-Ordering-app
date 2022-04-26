@@ -26,13 +26,13 @@
         <% for (const menuItem of menuItems) { %>
           <div class="food-item" name="<%= menuItem.id %>">
             <a href="http://localhost:8080/menu/<%= menuItem.id %>">
-            <button name="click-item" class = "item-img"><img src="<%= menuItem.image_url %>"/></button>
+            <button name="click-item" class = "item-img"><img src="<%= menuItem.image_url %>" class="iImg"/></button>
             </a>
             <div class="item-info">
               <div class="item-name">
                 <span><%= menuItem.name %></span>
               </div>
-              <span class="item-price">$ <%= menuItem.price / 100 %></span>
+              <span class="item-price" name="<%= menuItem.price %>">$ <%= menuItem.price / 100 %></span>
               <div class="cart-addition">
                 <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
                 <output class="single-item-qty" class="counter button">0</output>
