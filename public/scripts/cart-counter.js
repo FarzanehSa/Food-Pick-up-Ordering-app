@@ -18,20 +18,35 @@ $(document).ready(function() {
       singleItemQtyVal--
       singleItemQty.val(singleItemQtyVal);
     }
+    // console.log(document.cookie);
   });
 
   $('.add-to-cart').click(function() {
-    const itemId = $(this).closest('.food-item').attr('name');
-    console.log('id: ',itemId);
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
     console.log('Qty: ',singleItemQtyVal);
-    const mainCartQty = $('#main-cart-qty')
-    let mainCartQtyVal = mainCartQty.val()
     if (singleItemQtyVal> 0) {
+      const mainCartQty = $('#main-cart-qty')
+      let mainCartQtyVal = mainCartQty.val()
       singleItemQty.val(0)
       mainCartQtyVal ++
       mainCartQty.val(mainCartQtyVal)
+
+      // const itemId = $(this).closest('.food-item').attr('name');
+      // const itemPrice = $(this).siblings('.item-price').attr('name');
+      // const itemName = $(this).siblings('.item-name').children().text();
+      // const itemImg = $(this).parent().siblings().children().find('.iImg').attr('src');
+
+      // const x =  {
+      //   id: itemId,
+      //   name: itemName,
+      //   pricd: itemPrice,
+      //   qty: singleItemQtyVal,
+      //   image: itemImg
+      // }
+
+      // document.cookie = x
+
     }
   });
 });
