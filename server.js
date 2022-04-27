@@ -9,6 +9,7 @@ const app = express();
 const morgan = require("morgan");
 
 const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -28,6 +29,8 @@ app.use(cookieSession({
   name: 'session',
   keys: ['key1']
 }));
+
+app.use(cookieParser());
 
 app.use(
   "/styles",
