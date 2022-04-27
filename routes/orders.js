@@ -16,9 +16,8 @@ module.exports = (db) => {
     if (!user)  {
       res.redirect("/users");
     }
-    res.render("orders", {user})
+    res.render("orders", {user});
   });
-
   return router;
 };
 
