@@ -11,13 +11,13 @@
       </div>
       <div class = "right-buttons">
         <!-- <span><i class="fa-solid fa-cart-shopping"></i></span> -->
-        <form  class="goToCheckout button" action="orders" method="POST">
+        <form  class="goToCheckout button" action="/orders" method="GET">
           <button type="submit" class="nav-button">
             <i class="fa-solid fa-cart-shopping"></i>
             <output id="main-cart-qty">0</output>
           </button>
         </form>
-        <form  class="logoutForm" action="users/logout" method="POST">
+        <form  class="logoutForm" action="/users/logout" method="POST">
           <label style="margin: 1em">Hi <%= user.name %> ! </label>
           <button class="nav-button" type="submit" >Logout</button>
         </form>
