@@ -3,6 +3,7 @@ $(document).ready(function () {
   // Set Cookie
   // takes name of cookie & value as object
   const bakeCookie = (name, value) => {
+    // Add ';path=/' to make the cookie is shared amongst all urls
     const cookie = [name, '=', JSON.stringify(value), ';path=/'].join('');
     document.cookie = cookie;
   };
@@ -122,29 +123,32 @@ $(document).ready(function () {
     console.log('🍪', document.cookie);   // 🚨🚨🚨
   });
 
+  // Read the cards cookie outside checkoutTotal function
+  // We need it outside the function otherwise the cookie wont be deleted on button click
   const cards = readCookie('card');
+
+  // This function calculates the total price of one item based on ordered quantity
   const checkoutTotal = function () {
     let total = 0;
     Object.keys(cards).map(card => {
       total += (Number(cards[card].price)) * parseInt(cards[card].qty);
-      // console.log("total =", total)
     });
     total = total / 100;
     $('#total-checkout').html(`$ ${total}`);
-    // console.log("Khaled", total);
   };
   checkoutTotal();
 
-  // NOT COMPLETE (Need to modify once we have several items in checkout)
   $('.delete-button').click(function () {
+    // Will delete the whole item from orders page
     const itemCounter = $(this).closest('.price-on-right');
     itemCounter.remove();
 
+    // Modify new checkout money sum after deletion
     const id = $(this).attr("id")
     delete cards[id]
 
+    // Modify amount of orders in cart (in nav bar) after deletion
     const cartCounter = $('#main-cart-qty');
-    // console.log("KKKKK", cartCounter)
     let cartCounterVal = cartCounter.val();
     cartCounterVal--;
     cartCounter.val(cartCounterVal);
