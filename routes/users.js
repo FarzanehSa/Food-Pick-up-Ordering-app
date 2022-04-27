@@ -46,8 +46,9 @@ module.exports = (db) => {
       });
   });
 
-  // 🛑 NOT COMPLETE
+  // logout
   router.post('/logout', (req, res) => {
+    res.clearCookie('card')
     req.session = null;
     res.redirect("/users");
   });
