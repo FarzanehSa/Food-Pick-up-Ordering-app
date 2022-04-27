@@ -21,33 +21,35 @@
 <body>
   <%- include('partials/_header') %>
   <main>
+    <% for(const item in cart){ %>
     <div class="price-on-right">
-    <div class="order-row">
-      <div class="checkout-counter">
-        <button class="plus-qty-item minus-plus"><i class="fa-solid fa-circle-plus"></i></button>
-        <output class="single-item-qty counter-text">0</output>
-        <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
+      <div class="order-row">
+        <div class="checkout-counter">
+          <button class="plus-qty-item minus-plus"><i class="fa-solid fa-circle-plus"></i></button>
+          <output class="single-item-qty counter-text"><%= cart[item].qty %></output>
+          <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
+        </div>
+        <div>
+          <img src="<%= cart[item].image %>"/>
+        </div>
+        <div>
+          <span><%= cart[item].name %></span>
+        </div>
       </div>
-      <div>
-        <img src="https://storage.googleapis.com/ueat-assets/d501094c-b735-49b5-ae32-ff256aad7a39.jpg"/>
-      </div>
-      <div>
-        <span>Jr. Chicken Burrito Combo</span>
+      <div class="price-delete">
+        <span style="margin-right: 2em;"><%= ((cart[item].price / 100) * cart[item].qty).toFixed(2) %></span>
+        <button id="<%= cart[item].id %>" class="delete-button"><i class="fa-solid fa-trash"></i> Delete</button>
       </div>
     </div>
-    <div class="price-delete">
-      <span style="margin-right: 2em;">$10</span>
-      <button class="delete-button"><i class="fa-solid fa-trash"></i> Delete</button>
+    <% } %>
+    <div class="order-total">
+      <span>Your order total:</span>
+      <div class="checkout-button">
+      <span id="total-checkout" style="margin-bottom: 0.5em;"></span>
+      <button class="cash-register"><i class="fa-solid fa-cash-register"></i>  Checkout</button>
     </div>
   </div>
-  <div class="order-total">
-    <span>Your order total:</span>
-    <div class="checkout-button">
-    <span style="margin-bottom: 0.5em;">$ 10</span>
-    <button class="cash-register"><i class="fa-solid fa-cash-register"></i>  Checkout</button>
-  </div>
-  </div>
-  </main>
+</main>
 </body>
 
 </html>
