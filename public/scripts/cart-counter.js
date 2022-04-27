@@ -1,9 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
   // Set Cookie
   // takes name of cookie & value as object
   const bakeCookie = (name, value) => {
-    const cookie = [name, '=', JSON.stringify(value)].join('');
+    const cookie = [name, '=', JSON.stringify(value), ';path=/'].join('');
     document.cookie = cookie;
   };
 
@@ -13,7 +13,7 @@ $(document).ready(function() {
     let result = document.cookie.match(new RegExp(name + '=([^;]+)'));
     result && (result = JSON.parse(result[1]));
     return result;
-   };
+  };
 
   // takes name of cookie
   // set the expires parameter to a past date
@@ -21,7 +21,7 @@ $(document).ready(function() {
     if (readCookie(name)) {
       document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT";
     }
-  }
+  };
 
   // check if item had been added to the card before
   // takes card as object & id (object key)
@@ -49,39 +49,39 @@ $(document).ready(function() {
   const mainCartQty = $('#main-cart-qty');
   let card = readCookie('card');
 
-  console.log('🛒',card);       // 🚨🚨🚨
+  console.log('🛒', card);       // 🚨🚨🚨
 
   // update card number when page loaded
   updateCardNum(card);          // ✅
 
-  $('.plus-qty-item').click(function() {
+  $('.plus-qty-item').click(function () {
     // Find the counter element
     const singleItemQty = $(this).parent().find('.single-item-qty');
     // Get the counter's text into a number variable
     let singleItemQtyVal = singleItemQty.val(); //if val is empty, it returns its value
     // Add 1 to the number variable
-    singleItemQtyVal++
+    singleItemQtyVal++;
     // Update the counter element text
     singleItemQty.val(singleItemQtyVal);
   });
 
-  $('.minus-qty-item').click(function() {
+  $('.minus-qty-item').click(function () {
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
     if (singleItemQtyVal > 0) {
-      singleItemQtyVal--
+      singleItemQtyVal--;
       singleItemQty.val(singleItemQtyVal);
     }
   });
 
 
   // by click on "add to card" , set card cookie and update card icon number
-  $('.add-to-cart').click(function() {
+  $('.add-to-cart').click(function () {
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
 
     // we need to add to card cookie just if item qty has value
-    if (singleItemQtyVal> 0) {
+    if (singleItemQtyVal > 0) {
       // set back qty to be zero.
       singleItemQty.val(0);
 
@@ -110,20 +110,45 @@ $(document).ready(function() {
           price: itemPrice,
           qty: singleItemQtyVal,
           name: itemName,
-          image: itemImg
-        }
+          image: itemImg,
+        };
       }
       // set card cookie with card value
-      bakeCookie('card',card);
+      bakeCookie('card', card);
       // update card number
       updateCardNum(card);
     }
-    console.log('🍪',document.cookie);   // 🚨🚨🚨
+    checkoutTotal();
+    console.log('🍪', document.cookie);   // 🚨🚨🚨
   });
 
+  const cards = readCookie('card');
+  const checkoutTotal = function () {
+    let total = 0;
+    Object.keys(cards).map(card => {
+      total += (Number(cards[card].price)) * parseInt(cards[card].qty);
+      // console.log("total =", total)
+    });
+    total = total / 100;
+    $('#total-checkout').html(`$ ${total}`);
+    // console.log("Khaled", total);
+  };
+  checkoutTotal();
+
   // NOT COMPLETE (Need to modify once we have several items in checkout)
-  $('.delete-button').click(function() {
-    const itemCounter = $(this).parents().find('.price-on-right');
+  $('.delete-button').click(function () {
+    const itemCounter = $(this).closest('.price-on-right');
     itemCounter.remove();
+
+    const id = $(this).attr("id")
+    delete cards[id]
+
+    const cartCounter = $('#main-cart-qty');
+    // console.log("KKKKK", cartCounter)
+    let cartCounterVal = cartCounter.val();
+    cartCounterVal--;
+    cartCounter.val(cartCounterVal);
+
+    checkoutTotal()
   });
 });
