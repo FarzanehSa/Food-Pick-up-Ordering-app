@@ -46,16 +46,23 @@ $(document).ready(function () {
     }
   };
 
-  // set these variables when page loaded
+  const deleteFromCard = (card, id) => {
+    if (card[id]) {
+      delete card[id];
+    }
+    return card;
+  }
+
+  // // set these variables when page loaded
   const mainCartQty = $('#main-cart-qty');
-  let card = readCookie('card');
+  // let card = readCookie('card');
 
-  console.log('🛒', card);       // 🚨🚨🚨
+  // console.log('🛒', card);       // 🚨🚨🚨
 
-  // update card number when page loaded
-  updateCardNum(card);          // ✅
+  // // update card number when page loaded
+  // updateCardNum(card);          // ✅
 
-  $('.plus-qty-item').click(function () {
+/*   $('.plus-qty-item').click(function () {
     // Find the counter element
     const singleItemQty = $(this).parent().find('.single-item-qty');
     // Get the counter's text into a number variable
@@ -73,9 +80,9 @@ $(document).ready(function () {
       singleItemQtyVal--;
       singleItemQty.val(singleItemQtyVal);
     }
-  });
+  }); */
 
-
+/*
   // by click on "add to card" , set card cookie and update card icon number
   $('.add-to-cart').click(function () {
     const singleItemQty = $(this).parent().find('.single-item-qty');
@@ -119,23 +126,25 @@ $(document).ready(function () {
       // update card number
       updateCardNum(card);
     }
-    // checkoutTotal();
+    checkoutTotal();
     console.log('🍪', document.cookie);   // 🚨🚨🚨
   });
-/*
+ */
+
   // Read the cards cookie outside checkoutTotal function
   // We need it outside the function otherwise the cookie wont be deleted on button click
-  const cards = readCookie('card');
+  let card = readCookie('card');
 
   // This function calculates the total price of one item based on ordered quantity
   const checkoutTotal = function () {
     let total = 0;
-    Object.keys(cards).map(card => {
-      total += (Number(cards[card].price)) * parseInt(cards[card].qty);
+    Object.keys(card).map(item => {
+      total += (Number(card[item].price)) * parseInt(card[item].qty);
     });
     total = total / 100;
     $('#total-checkout').html(`$ ${total}`);
   };
+
   checkoutTotal();
 
   $('.delete-button').click(function () {
@@ -145,14 +154,17 @@ $(document).ready(function () {
 
     // Modify new checkout money sum after deletion
     const id = $(this).attr("id")
-    delete cards[id]
+    card = readCookie('card');
+    deleteFromCard(card, id);
 
+    bakeCookie('card', card);
+    updateCardNum(card);
     // Modify amount of orders in cart (in nav bar) after deletion
-    const cartCounter = $('#main-cart-qty');
-    let cartCounterVal = cartCounter.val();
-    cartCounterVal--;
-    cartCounter.val(cartCounterVal);
+    // const cartCounter = $('#main-cart-qty');
+    // let cartCounterVal = cartCounter.val();
+    // cartCounterVal--;
+    // cartCounter.val(cartCounterVal);
 
     checkoutTotal()
-  }); */
+  });
 });
