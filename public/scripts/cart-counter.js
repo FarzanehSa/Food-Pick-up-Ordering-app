@@ -86,17 +86,17 @@ $(document).ready(function() {
       singleItemQty.val(0);
 
       // find all item info
-      const itemId = $(this).closest('.food-item').attr('name');
-      const itemPrice = $(this).closest('.food-item').find('.item-price').attr('name');
-      const itemName = $(this).closest('.food-item').find('.item-name').text();
-      const itemImg = $(this).closest('.food-item').find('.iImg').attr('src');
+      const itemId = $(this).closest('.for-cookie-item').attr('name');
+      const itemPrice = $(this).closest('.for-cookie-item').find('.for-cookie-price').attr('name');
+      const itemName = $(this).closest('.for-cookie-item').find('.for-cookie-name').text();
+      const itemImg = $(this).closest('.for-cookie-item').find('.for-cookie-img').attr('src');
 
       // read card cookie (obj) and save in card value.
       // card = readCookie('card')
 
       // if there is no card data, set it as empty object
       if (!card) {
-        card =  {};
+        card = {};
       }
 
       // check if item had been added to cart before if yes, just update it's qty.
@@ -107,7 +107,7 @@ $(document).ready(function() {
       } else {
         card[itemId] = {
           id: itemId,
-          pricd: itemPrice,
+          price: itemPrice,
           qty: singleItemQtyVal,
           name: itemName,
           image: itemImg
