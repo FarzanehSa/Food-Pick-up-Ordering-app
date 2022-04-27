@@ -13,10 +13,12 @@ module.exports = (db) => {
   // Rendering orders.ejs
   router.get("/", (req, res) => {
     const user = req.session.user;
+    const cart = JSON.parse(req.cookies.card)
     if (!user)  {
       res.redirect("/users");
     }
-    res.render("orders", {user});
+    console.log("khaled", JSON.parse(req.cookies.card))
+    res.render("orders", {user, cart});
   });
   return router;
 };
