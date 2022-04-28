@@ -18,6 +18,7 @@ module.exports = (db) => {
     }
     if (req.cookies.cart) {
       const cart = JSON.parse(req.cookies.cart)
+      // If cart is empty won't go to orders page!
       if (Object.keys(cart).length === 0) {
         res.redirect("/menu");
       }
@@ -25,7 +26,6 @@ module.exports = (db) => {
       res.render("orders", {user, cart});
     }
     res.redirect("/menu");
-    // If cart is empty won't go to orders page!
   });
   return router;
 };
