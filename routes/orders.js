@@ -11,6 +11,7 @@ const router  = express.Router();
 module.exports = (db) => {
   // get orders/
   // Rendering orders.ejs
+  // 👀❕⭕️
   router.get("/", (req, res) => {
     const user = req.session.user;
     if (!user)  {
@@ -22,10 +23,23 @@ module.exports = (db) => {
       if (Object.keys(cart).length === 0) {
         res.redirect("/menu");
       }
-      console.log("khaled", JSON.parse(req.cookies.cart))
+      // console.log("khaled", JSON.parse(req.cookies.cart))
       res.render("orders", {user, cart});
     }
+  });
+
+  router.post("/", (req, res) => {
+    const user = req.session.user;
+    console.log('❎ post order - user:',user);
+    const cart = JSON.parse(req.cookies.cart)
+    console.log('❎ post order - cart:',cart);
+    const detail = req.body;
+    console.log('❎ post order - req-body:',detail);
+
+    // delete cart cookie, cause order received server-side
+    res.clearCookie('cart');
     res.redirect("/menu");
   });
   return router;
 };
+
