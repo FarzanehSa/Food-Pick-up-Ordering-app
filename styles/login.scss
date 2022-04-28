@@ -1,0 +1,92 @@
+@import '_variables';
+
+main {
+  font-size: 17px;
+  height: 100vh;
+  background-color: #595757;
+  // background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
+  background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
+
+  .nav-bar {
+    display: flex;
+    justify-content: center;
+    background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
+
+    .contact {
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      align-items: center;
+      border: none;
+      background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, rgb(133, 132, 132), rgb(161, 159, 159),  white);
+    }
+
+    .location {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      border: none;
+      background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to left, rgb(133, 132, 132), rgb(161, 159, 159),  white);
+    }
+
+    .logo {
+      width: 180px;
+    }
+  }
+
+  img {
+    width: 150px;
+  }
+
+  .login-form {
+    padding-top: 1em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .left-images {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-data {
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(76, 51, 51);
+      background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+      padding: 26px;
+      border-radius: 15px;
+
+      .login-cancel-buttons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 3px;
+
+        .login, .cancel {
+          border: none;
+          color: $button-font-color;
+          padding: 8px 14px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 16px;
+          background-color: $menu-background-color;
+          }
+          .cancel:hover {
+            color: red;
+          }
+      }
+
+    }
+
+    .right-images {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
