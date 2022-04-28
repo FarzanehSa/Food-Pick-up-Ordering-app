@@ -15,7 +15,8 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 
-  <script type="text/javascript" src="/scripts/cart-counter.js"></script>
+  <script type="text/javascript" src="/scripts/checkout.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/cart-counter.js"></script> -->
 </head>
 
 <body>
@@ -23,11 +24,11 @@
   <main>
     <% for(const item in cart){ %>
     <div class="price-on-right">
-      <div class="order-row">
+      <div class="order-row" name="<%= cart[item].id %>">
         <div class="checkout-counter">
-          <button class="plus-qty-item minus-plus"><i class="fa-solid fa-circle-plus"></i></button>
-          <output class="single-item-qty counter-text"><%= cart[item].qty %></output>
-          <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
+          <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-circle-plus"></i></button>
+          <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
+          <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-circle-minus"></i></button>
         </div>
         <div>
           <img src="<%= cart[item].image %>"/>
