@@ -6,7 +6,7 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
 
-  order_time TIME NOT NULL DEFAULT current_timestamp,
+  order_time DATE NOT NULL DEFAULT NOW(),
   comment TEXT,
-  requested_pickup_time TIME DEFAULT '00:30:00'
+  requested_pickup_time TIME NOT NULL
 );
