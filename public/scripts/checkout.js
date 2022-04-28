@@ -73,7 +73,27 @@ $(document).ready(function () {
 
   // // set these variables when page loaded
   const mainCartQty = $('#main-cart-qty');
-  $("#cart-button").css("visibility","hidden");
+  $("#cart-button").css("visibility","hidden")
+
+
+  // 📌next 2 event handler are for setting for pickup
+  // names are too bad, need to be changed
+  $('#later').click(() => {
+    if($('#later').is(':checked'))
+    {
+      $(".radio-s").css("display","none")
+      $(".time-p").css("display","block")
+      $('#select-time').prop('required',true);
+    }
+  });
+  $('#now').click(() => {
+    if($('#now').is(':checked'))
+    {
+      $(".time-p").css("display","none")
+      $(".radio-s").css("display","inline-block")
+      $('#select-time').prop('required',false);
+    }
+  });
 
 
   // Read the carts cookie outside checkoutTotal function

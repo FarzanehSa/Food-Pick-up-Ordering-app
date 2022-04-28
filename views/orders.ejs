@@ -22,35 +22,86 @@
 <body>
   <%- include('partials/_header') %>
   <main>
-    <% for(const item in cart){ %>
-    <div class="price-on-right">
-      <div class="order-row" name="<%= cart[item].id %>">
-        <div class="checkout-counter">
-          <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-circle-plus"></i></button>
-          <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
-          <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-circle-minus"></i></button>
-        </div>
-        <div>
-          <img src="<%= cart[item].image %>"/>
-        </div>
-        <div>
-          <span><%= cart[item].name %></span>
-        </div>
+    <div id="checkout-page">
+      <div id="checkout-left-side">
+        <span>Your Cart</span>
+        <hr/>
+        <hr/>
+        <ol>
+          <% for(const item in cart){ %>
+            <li class="row-list">
+              <article class="price-on-right item-info">
+                <div class="order-row" name="<%= cart[item].id %>">
+                  <div class="checkout-counter">
+                    <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-circle-plus"></i></button>
+                    <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
+                    <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-circle-minus"></i></button>
+                  </div>
+                  <div>
+                    <img src="<%= cart[item].image %>"/>
+                  </div>
+                  <div>
+                    <span><%= cart[item].name %></span>
+                  </div>
+                </div>
+                <div class="price-delete">
+                  <span style="margin-right: 2em;"><%= ((cart[item].price / 100) * cart[item].qty).toFixed(2) %></span>
+                  <button id="<%= cart[item].id %>" class="delete-button"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              </article>
+              <hr/>
+            </li>
+          <% } %>
+        </ol>
       </div>
-      <div class="price-delete">
-        <span style="margin-right: 2em;"><%= ((cart[item].price / 100) * cart[item].qty).toFixed(2) %></span>
-        <button id="<%= cart[item].id %>" class="delete-button"><i class="fa-solid fa-trash"></i> Delete</button>
-      </div>
-    </div>
-    <% } %>
-    <div class="order-total">
-      <span>Your order total:</span>
-      <div class="checkout-button">
-      <span id="total-checkout" style="margin-bottom: 0.5em;"></span>
-      <button class="cash-register"><i class="fa-solid fa-cash-register"></i>  Checkout</button>
-    </div>
-  </div>
-</main>
-</body>
+      <div id="checkout-right-side">
 
+        <div class="order-total">
+          <p>
+            <span>Your order total:</span>
+            <span id="total-checkout" style="margin-bottom: 0.5em;"></span>
+          </p>
+          <div>
+            <span>Number of items: </span>
+            <span id="total-items" style="margin-bottom: 0.5em;"><%= Object.keys(cart).length %></span>
+          </div>
+        </div>
+
+          <form  class="place-order" action="/orders" method="POST">
+            <div class="time-pickup">
+              <p>Please select pickup time</p>
+              <div class="radio-selection">
+                <div class="radio">
+                  <input type="radio" id="now" name="pickup-time" value="now" required>
+                  <label for="now">as soon as possible</label>
+                </div>
+                <div class="radio">
+                  <input type="radio" id="later" name="pickup-time" value="later" class="radio-s">
+                  <label for="later" class="radio-s">set time</label>
+                </div>
+              </div>
+              <div>
+                <label for="select-time" class="time-p label-time-p"> Opening hours 11:00 to 20:00 </label>
+                <div>
+                  <input id="select-time" type="time" name="pickup-time-select" min="11:00" max="20:00" class="time-p" required>
+                  <span class="validity"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="comment">
+              <textarea name="comment" id="comment-text" maxlength="60" placeholder="Special instructions (Napkins, etc..)"></textarea>
+            </div>
+
+            <div class="checkout-button">
+
+              <!-- <label style="margin: 1em"> </label> -->
+              <button class="cash-register" type="submit"><i class="fa-solid fa-cash-register"></i> Checkout</button>
+            </div>
+          </form>
+
+      </div>
+    </div>
+  </main>
+</body>
 </html>
