@@ -24,12 +24,21 @@ main {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: nowrap;
     }
 
     .order-row {
       display: flex;
       align-items: center;
       column-gap: 20px;
+
+      .item-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 55%;
+      }
 
       img {
         border-radius: 50%;
@@ -61,6 +70,12 @@ main {
         font-size: 24px;
         color: green;
       }
+    }
+
+    .price-delete {
+      // border: $test;
+      display: flex;
+      justify-content: end;
     }
 
     .delete-button {
@@ -101,6 +116,7 @@ main {
       justify-content: center;
       align-items: center;
       margin-bottom:0.5em ;
+      // flex-wrap: wrap;
     }
 
     .time-pickup {
@@ -151,7 +167,7 @@ main {
       align-items: center;
       justify-content: center;
 
-      .cash-register {
+      #cash-register {
         border: none;
         background-color: gold;
         // background-color: $menu-background-color;
