@@ -13,11 +13,15 @@ module.exports = (db) => {
   // Rendering orders.ejs
   router.get("/", (req, res) => {
     const user = req.session.user;
-    const cart = JSON.parse(req.cookies.card)
+    const cart = JSON.parse(req.cookies.cart)
     if (!user)  {
       res.redirect("/users");
     }
-    console.log("khaled", JSON.parse(req.cookies.card))
+    // If cart is empty won't go to orders page!
+    if (!cart || Object.keys(cart).length === 0) {
+      res.redirect("/menu");
+    }
+    console.log("khaled", JSON.parse(req.cookies.cart))
     res.render("orders", {user, cart});
   });
   return router;
