@@ -24,36 +24,36 @@ $(document).ready(function () {
     }
   };
 
-  // check if item had been added to the card before
-  // takes card as object & id (object key)
+  // check if item had been added to the cart before
+  // takes cart as object & id (object key)
   // return true or false
-  const findInCard = (card, id) => {
-    const itemIds = Object.keys(card);
+  const findInCart = (cart, id) => {
+    const itemIds = Object.keys(cart);
     return itemIds.includes(id);
   };
 
-  // update quantity of specific item in card
-  const updateQtyInCard = (card, id, newQty) => {
-    preQty = card[id].qty;
-    card[id].qty = Number(preQty) + Number(newQty);
+  // update quantity of specific item in cart
+  const updateQtyInCart = (cart, id, newQty) => {
+    preQty = cart[id].qty;
+    cart[id].qty = Number(preQty) + Number(newQty);
   };
 
-  // update card number base on card cookie
-  const updateCardNum = card => {
-    if (card) {
-      const updateNum = Object.keys(card).length;
+  // update cart number base on cart cookie
+  const updateCartNum = cart => {
+    if (cart) {
+      const updateNum = Object.keys(cart).length;
       mainCartQty.val(updateNum);
     }
   };
 
   // set these variables when page loaded
   const mainCartQty = $('#main-cart-qty');
-  let card = readCookie('card');
+  let cart = readCookie('cart');
 
-  console.log('🛒', card);       // 🚨🚨🚨
+  console.log('🛒', cart);       // 🚨🚨🚨
 
-  // update card number when page loaded
-  updateCardNum(card);          // ✅
+  // update cart number when page loaded
+  updateCartNum(cart);          // ✅
 
   $('.plus-qty-item').click(function () {
     // Find the counter element
@@ -76,12 +76,12 @@ $(document).ready(function () {
   });
 
 
-  // by click on "add to card" , set card cookie and update card icon number
+  // by click on "add to cart" , set cart cookie and update cart icon number
   $('.add-to-cart').click(function () {
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
 
-    // we need to add to card cookie just if item qty has value
+    // we need to add to cart cookie just if item qty has value
     if (singleItemQtyVal > 0) {
       // set back qty to be zero.
       singleItemQty.val(0);
@@ -92,21 +92,21 @@ $(document).ready(function () {
       const itemName = $(this).closest('.for-cookie-item').find('.for-cookie-name').text();
       const itemImg = $(this).closest('.for-cookie-item').find('.for-cookie-img').attr('src');
 
-      // read card cookie (obj) and save in card value.
-      // card = readCookie('card')
+      // read cart cookie (obj) and save in cart value.
+      // cart = readCookie('cart')
 
-      // if there is no card data, set it as empty object
-      if (!card) {
-        card = {};
+      // if there is no cart data, set it as empty object
+      if (!cart) {
+        cart = {};
       }
 
       // check if item had been added to cart before if yes, just update it's qty.
-      // otherwise add whole item info as an object in card variable,
+      // otherwise add whole item info as an object in cart variable,
       // set itemId for it's object key
-      if (findInCard(card, itemId)) {
-        updateQtyInCard(card, itemId, singleItemQtyVal);
+      if (findInCart(cart, itemId)) {
+        updateQtyInCart(cart, itemId, singleItemQtyVal);
       } else {
-        card[itemId] = {
+        cart[itemId] = {
           id: itemId,
           price: itemPrice,
           qty: singleItemQtyVal,
@@ -114,45 +114,12 @@ $(document).ready(function () {
           image: itemImg,
         };
       }
-      // set card cookie with card value
-      bakeCookie('card', card);
-      // update card number
-      updateCardNum(card);
+      // set cart cookie with cart value
+      bakeCookie('cart', cart);
+      // update cart number
+      updateCartNum(cart);
     }
     // checkoutTotal();
     console.log('🍪', document.cookie);   // 🚨🚨🚨
   });
-/*
-  // Read the cards cookie outside checkoutTotal function
-  // We need it outside the function otherwise the cookie wont be deleted on button click
-  const cards = readCookie('card');
-
-  // This function calculates the total price of one item based on ordered quantity
-  const checkoutTotal = function () {
-    let total = 0;
-    Object.keys(cards).map(card => {
-      total += (Number(cards[card].price)) * parseInt(cards[card].qty);
-    });
-    total = total / 100;
-    $('#total-checkout').html(`$ ${total}`);
-  };
-  checkoutTotal();
-
-  $('.delete-button').click(function () {
-    // Will delete the whole item from orders page
-    const itemCounter = $(this).closest('.price-on-right');
-    itemCounter.remove();
-
-    // Modify new checkout money sum after deletion
-    const id = $(this).attr("id")
-    delete cards[id]
-
-    // Modify amount of orders in cart (in nav bar) after deletion
-    const cartCounter = $('#main-cart-qty');
-    let cartCounterVal = cartCounter.val();
-    cartCounterVal--;
-    cartCounter.val(cartCounterVal);
-
-    checkoutTotal()
-  }); */
 });
