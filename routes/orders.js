@@ -13,16 +13,19 @@ module.exports = (db) => {
   // Rendering orders.ejs
   router.get("/", (req, res) => {
     const user = req.session.user;
-    const cart = JSON.parse(req.cookies.cart)
     if (!user)  {
       res.redirect("/users");
     }
-    // If cart is empty won't go to orders page!
-    if (!cart || Object.keys(cart).length === 0) {
-      res.redirect("/menu");
+    if (req.cookies.cart) {
+      const cart = JSON.parse(req.cookies.cart)
+      // If cart is empty won't go to orders page!
+      if (Object.keys(cart).length === 0) {
+        res.redirect("/menu");
+      }
+      console.log("khaled", JSON.parse(req.cookies.cart))
+      res.render("orders", {user, cart});
     }
-    console.log("khaled", JSON.parse(req.cookies.cart))
-    res.render("orders", {user, cart});
+    res.redirect("/menu");
   });
   return router;
 };
