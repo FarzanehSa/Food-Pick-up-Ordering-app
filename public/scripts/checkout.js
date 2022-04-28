@@ -24,126 +24,61 @@ $(document).ready(function () {
     }
   };
 
-  // check if item had been added to the card before
-  // takes card as object & id (object key)
+  // check if item had been added to the cart before
+  // takes cart as object & id (object key)
   // return true or false
-  const findInCard = (card, id) => {
-    const itemIds = Object.keys(card);
+  const findInCart = (cart, id) => {
+    const itemIds = Object.keys(cart);
     return itemIds.includes(id);
   };
 
-  // update quantity of specific item in card
-  const updateQtyInCard = (card, id, newQty) => {
-    preQty = card[id].qty;
-    card[id].qty = Number(preQty) + Number(newQty);
+  // update quantity of specific item in cart
+  const updateQtyInCart = (cart, id, newQty) => {
+    preQty = cart[id].qty;
+    cart[id].qty = Number(preQty) + Number(newQty);
   };
 
-  // update card number base on card cookie
-  const updateCardNum = card => {
-    if (card) {
-      const updateNum = Object.keys(card).length;
+  // in checkout page qty will be over-ride
+  const updateQtyInCartAtcheckout = (cart, id, newQty) => {
+    cart[id].qty = Number(newQty);
+  };
+
+  // update cart number base on cart cookie
+  const updateCartNum = cart => {
+    if (cart) {
+      const updateNum = Object.keys(cart).length;
       mainCartQty.val(updateNum);
     }
   };
 
-  const deleteFromCard = (card, id) => {
-    if (card[id]) {
-      delete card[id];
+  // takes object and key, and delete that key form object
+  const deleteFromCart = (cart, id) => {
+    if (cart[id]) {
+      delete cart[id];
     }
-    return card;
+    return cart;
   }
-
-  // // set these variables when page loaded
-  const mainCartQty = $('#main-cart-qty');
-  // let card = readCookie('card');
-
-  // console.log('🛒', card);       // 🚨🚨🚨
-
-  // // update card number when page loaded
-  // updateCardNum(card);          // ✅
-
-/*   $('.plus-qty-item').click(function () {
-    // Find the counter element
-    const singleItemQty = $(this).parent().find('.single-item-qty');
-    // Get the counter's text into a number variable
-    let singleItemQtyVal = singleItemQty.val(); //if val is empty, it returns its value
-    // Add 1 to the number variable
-    singleItemQtyVal++;
-    // Update the counter element text
-    singleItemQty.val(singleItemQtyVal);
-  });
-
-  $('.minus-qty-item').click(function () {
-    const singleItemQty = $(this).parent().find('.single-item-qty');
-    let singleItemQtyVal = singleItemQty.val();
-    if (singleItemQtyVal > 0) {
-      singleItemQtyVal--;
-      singleItemQty.val(singleItemQtyVal);
-    }
-  }); */
-
-/*
-  // by click on "add to card" , set card cookie and update card icon number
-  $('.add-to-cart').click(function () {
-    const singleItemQty = $(this).parent().find('.single-item-qty');
-    let singleItemQtyVal = singleItemQty.val();
-
-    // we need to add to card cookie just if item qty has value
-    if (singleItemQtyVal > 0) {
-      // set back qty to be zero.
-      singleItemQty.val(0);
-
-      // find all item info
-      const itemId = $(this).closest('.for-cookie-item').attr('name');
-      const itemPrice = $(this).closest('.for-cookie-item').find('.for-cookie-price').attr('name');
-      const itemName = $(this).closest('.for-cookie-item').find('.for-cookie-name').text();
-      const itemImg = $(this).closest('.for-cookie-item').find('.for-cookie-img').attr('src');
-
-      // read card cookie (obj) and save in card value.
-      // card = readCookie('card')
-
-      // if there is no card data, set it as empty object
-      if (!card) {
-        card = {};
-      }
-
-      // check if item had been added to cart before if yes, just update it's qty.
-      // otherwise add whole item info as an object in card variable,
-      // set itemId for it's object key
-      if (findInCard(card, itemId)) {
-        updateQtyInCard(card, itemId, singleItemQtyVal);
-      } else {
-        card[itemId] = {
-          id: itemId,
-          price: itemPrice,
-          qty: singleItemQtyVal,
-          name: itemName,
-          image: itemImg,
-        };
-      }
-      // set card cookie with card value
-      bakeCookie('card', card);
-      // update card number
-      updateCardNum(card);
-    }
-    checkoutTotal();
-    console.log('🍪', document.cookie);   // 🚨🚨🚨
-  });
- */
-
-  // Read the cards cookie outside checkoutTotal function
-  // We need it outside the function otherwise the cookie wont be deleted on button click
-  let card = readCookie('card');
 
   // This function calculates the total price of one item based on ordered quantity
   const checkoutTotal = function () {
     let total = 0;
-    Object.keys(card).map(item => {
-      total += (Number(card[item].price)) * parseInt(card[item].qty);
+    Object.keys(cart).map(item => {
+      total += (Number(cart[item].price)) * parseInt(cart[item].qty);
     });
     total = total / 100;
     $('#total-checkout').html(`$ ${total}`);
   };
+
+
+
+  // // set these variables when page loaded
+  const mainCartQty = $('#main-cart-qty');
+  $("#cart-button").css("visibility","hidden");
+
+
+  // Read the carts cookie outside checkoutTotal function
+  // We need it outside the function otherwise the cookie wont be deleted on button click
+  let cart = readCookie('cart');
 
   checkoutTotal();
 
@@ -153,18 +88,43 @@ $(document).ready(function () {
     itemCounter.remove();
 
     // Modify new checkout money sum after deletion
+    // delete from cart, set cookie, update cart number, reload page
     const id = $(this).attr("id")
-    card = readCookie('card');
-    deleteFromCard(card, id);
+    cart = readCookie('cart');
+    deleteFromCart(cart, id);
+    bakeCookie('cart', cart);
+    updateCartNum(cart);
+    checkoutTotal();
+    location.reload();
+  });
 
-    bakeCookie('card', card);
-    updateCardNum(card);
-    // Modify amount of orders in cart (in nav bar) after deletion
-    // const cartCounter = $('#main-cart-qty');
-    // let cartCounterVal = cartCounter.val();
-    // cartCounterVal--;
-    // cartCounter.val(cartCounterVal);
+    $('.checkout-plus-qty').click(function () {
+    // Find the counter element & update qty
+    const singleItemQty = $(this).parent().find('.checkout-item-qty');
+    let singleItemQtyVal = singleItemQty.val();
+    singleItemQtyVal++;
 
-    checkoutTotal()
+    // find id and update cart, cookie & reload page
+    singleItemQty.val(singleItemQtyVal);
+    const itemId = $(this).closest('.price-on-right').find('.order-row').attr('name');
+    updateQtyInCartAtcheckout(cart, itemId, singleItemQtyVal)
+    bakeCookie('cart',cart)
+    location.reload();
+  });
+
+  $('.checkout-minus-qty').click(function () {
+    // Find the counter element & update qty
+    const singleItemQty = $(this).parent().find('.checkout-item-qty');
+    let singleItemQtyVal = singleItemQty.val();
+    if (singleItemQtyVal > 1) {
+      singleItemQtyVal--;
+      singleItemQty.val(singleItemQtyVal);
+    }
+    // find id and update cart, cookie & reload page
+    singleItemQty.val(singleItemQtyVal);
+    const itemId = $(this).closest('.price-on-right').find('.order-row').attr('name');
+    updateQtyInCartAtcheckout(cart, itemId, singleItemQtyVal)
+    bakeCookie('cart',cart)
+    location.reload();
   });
 });
