@@ -40,7 +40,7 @@
                   <div>
                     <img src="<%= cart[item].image %>"/>
                   </div>
-                  <div>
+                  <div class="item-name">
                     <span><%= cart[item].name %></span>
                   </div>
                 </div>
@@ -66,8 +66,9 @@
             <span id="total-items" style="margin-bottom: 0.5em;"><%= Object.keys(cart).length %></span>
           </div>
         </div>
-
+          <!-- 👀❕⭕️ -->
           <form  class="place-order" action="/orders" method="POST">
+          <!-- <form  class="place-order" action="/orders/xx" method="POST"> -->
             <div class="time-pickup">
               <p>Please select pickup time</p>
               <div class="radio-selection">
@@ -88,18 +89,13 @@
                 </div>
               </div>
             </div>
-
             <div class="comment">
               <textarea name="comment" id="comment-text" maxlength="60" placeholder="Special instructions (Napkins, etc..)"></textarea>
             </div>
-
             <div class="checkout-button">
-
-              <!-- <label style="margin: 1em"> </label> -->
-              <button class="cash-register" type="submit"><i class="fa-solid fa-cash-register"></i> Checkout</button>
+              <button id="cash-register" type="submit"><i class="fa-solid fa-cash-register"></i> Checkout</button>
             </div>
           </form>
-
       </div>
     </div>
   </main>
