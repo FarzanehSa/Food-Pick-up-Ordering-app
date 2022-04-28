@@ -1,43 +1,4 @@
 $(document).ready(function () {
-
-  // Set Cookie
-  // takes name of cookie & value as object
-  const bakeCookie = (name, value) => {
-    // Add ';path=/' to make the cookie is shared amongst all urls
-    const cookie = [name, '=', JSON.stringify(value), ';path=/'].join('');
-    document.cookie = cookie;
-  };
-
-  // takes name of cookie
-  // return cookie's value as object
-  const readCookie = name => {
-    let result = document.cookie.match(new RegExp(name + '=([^;]+)'));
-    result && (result = JSON.parse(result[1]));
-    return result;
-  };
-
-  // takes name of cookie
-  // set the expires parameter to a past date
-  const deleteCookie = (name) => {
-    if (readCookie(name)) {
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT";
-    }
-  };
-
-  // check if item had been added to the cart before
-  // takes cart as object & id (object key)
-  // return true or false
-  const findInCart = (cart, id) => {
-    const itemIds = Object.keys(cart);
-    return itemIds.includes(id);
-  };
-
-  // update quantity of specific item in cart
-  const updateQtyInCart = (cart, id, newQty) => {
-    preQty = cart[id].qty;
-    cart[id].qty = Number(preQty) + Number(newQty);
-  };
-
   // update cart number base on cart cookie
   const updateCartNum = cart => {
     if (cart) {
