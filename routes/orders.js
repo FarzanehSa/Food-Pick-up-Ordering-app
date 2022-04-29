@@ -7,33 +7,8 @@
 const express = require('express');
 const { addOrder } = require('../db/queries/orders/01-addOrder');
 const { addOrderItem } = require('../db/queries/orders/02-addOrderItems');
+const { OrderReceivedAlert, createOrderInfoObject } = require('../javaScripts/helperFunctions.js');
 const router  = express.Router();
-
-
-// ❌❌ Move this function to another helper file
-// create an object with 3 keys (userId, comment & pickupTime)
-const createOrderInfoObject = function(userObject, detailObject) {
-  // if customer select "as soon as possible" for pickup, we add, 15 mins to NOW time.
-  const curTime = new Date(); // take NOW time!
-  let pickupTime;
-  if (detailObject.pickupTime === 'later') {
-    pickupTime = detailObject.setPickupTime;
-  } else {
-    // add 15 minutes;
-    const minutesToAdd = 15;
-    const futureTime = new Date(curTime.getTime() + minutesToAdd*60000);
-    // just take 8 first character of string which is hh:mm:ss
-    pickupTime = futureTime.toTimeString().slice(0,8);
-  }
-  // build order info object
-  const order = {
-    userId: userObject.id,
-    comment: detailObject.comment,
-    pickupTime
-  }
-  // console.log('👀 order',order);  // 🚨🚨🚨
-  return order;
-}
 
 module.exports = (db) => {
   // get orders/
@@ -84,6 +59,8 @@ module.exports = (db) => {
       Promise.all(addItemPromise)
       .then ( data => {
         console.log('✅ All items added to DB');                // 🚨🚨🚨
+        // send owner message.
+        OrderReceivedAlert();
         // delete cart cookie, cause order received server-side
         res.clearCookie('cart');
         res.redirect("/menu");
