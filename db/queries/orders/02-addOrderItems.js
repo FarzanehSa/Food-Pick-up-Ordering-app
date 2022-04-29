@@ -4,7 +4,6 @@ const addOrderItem = (db, orderId, item) => {
   queryValue.push(orderId);
   queryValue.push(item.id);
   queryValue.push(item.qty);
-  console.log('👀',queryValue);
   return db.query(`INSERT INTO order_items (order_id, menu_item_id, qty )
   VALUES ($1, $2, $3);`, queryValue)
 };
