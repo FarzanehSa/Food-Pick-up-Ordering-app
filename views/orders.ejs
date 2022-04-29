@@ -45,7 +45,7 @@
                   </div>
                 </div>
                 <div class="price-delete">
-                  <span style="margin-right: 2em;"><%= ((cart[item].price / 100) * cart[item].qty).toFixed(2) %></span>
+                  <span style="margin-right: 2em;" class="total-price">$<%= ((cart[item].price / 100) * cart[item].qty).toFixed(2) %></span>
                   <button id="<%= cart[item].id %>" class="delete-button"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </article>
@@ -80,7 +80,7 @@
                 </div>
               </div>
               <div>
-                <label for="select-time" class="time-p label-time-p"> Opening hours 11:00 to 20:00 </label>
+                <label for="select-time" class="time-p label-time-p"> Opening hours 11am to 8pm </label>
                 <div>
                   <input id="select-time" type="time" name="setPickupTime" min="11:00" max="20:00" class="time-p" required>
                   <span class="validity"></span>

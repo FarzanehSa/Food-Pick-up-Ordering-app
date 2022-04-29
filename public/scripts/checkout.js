@@ -15,6 +15,8 @@ $(document).ready(function () {
     if (cart) {
       const updateNum = Object.keys(cart).length;
       mainCartQty.val(updateNum);
+      // update itemRows as well
+      $('#total-items').html(`$ ${updateNum}`)
     }
   };
 
@@ -72,6 +74,9 @@ $(document).ready(function () {
     singleItemQty.val(singleItemQtyVal);
     const itemId = $(this).closest('.price-on-right').find('.order-row').attr('name');
     updateQtyInCartAtcheckout(cart, itemId, singleItemQtyVal);
+    // calculate and update item total price for that row
+    const newTotalPrice = calculateItemTotal(cart[itemId].price, cart[itemId].qty);
+    $(this).closest('.price-on-right').find('.total-price').html(`$${newTotalPrice}`);
     bakeCookie('cart',cart);
     checkoutTotal(cart);
   });
@@ -88,6 +93,8 @@ $(document).ready(function () {
     singleItemQty.val(singleItemQtyVal);
     const itemId = $(this).closest('.price-on-right').find('.order-row').attr('name');
     updateQtyInCartAtcheckout(cart, itemId, singleItemQtyVal);
+    const newTotalPrice = calculateItemTotal(cart[itemId].price, cart[itemId].qty);
+    $(this).closest('.price-on-right').find('.total-price').html(`$${newTotalPrice}`);
     bakeCookie('cart',cart);
     checkoutTotal(cart);
   });
