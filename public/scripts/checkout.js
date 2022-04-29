@@ -16,7 +16,7 @@ $(document).ready(function () {
       const updateNum = Object.keys(cart).length;
       mainCartQty.val(updateNum);
       // update itemRows as well
-      $('#total-items').html(`$ ${updateNum}`)
+      $('#total-items').html(`${updateNum}`)
     }
   };
 
