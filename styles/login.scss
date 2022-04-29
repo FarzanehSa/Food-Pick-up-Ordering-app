@@ -11,6 +11,26 @@ main {
     justify-content: center;
     background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
 
+    .main-address {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+
+      .phone-email {
+        visibility: hidden;
+        color: silver;
+        position: absolute;
+        right: 100%;
+        width: 220px;
+        border-radius: 20px 20px 0 20px;
+        padding-left: 14px;
+        padding-right: 8px;
+        background-color: rgb(0, 0, 0);
+        background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+      }
+    }
+
     .contact {
       color: black;
       display: flex;
@@ -27,6 +47,10 @@ main {
       }
     }
 
+    .logo {
+      width: 180px;
+    }
+
     .location {
       display: flex;
       flex-direction: column;
@@ -41,28 +65,6 @@ main {
       }
     }
 
-    .logo {
-      width: 180px;
-    }
-  }
-  .test {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    position: relative;
-
-    .phone-email {
-      visibility: hidden;
-      color: silver;
-      position: absolute;
-      right: 100%;
-      width: 220px;
-      border-radius: 20px 20px 0 20px;
-      padding-left: 14px;
-      padding-right: 8px;
-      background-color: rgb(0, 0, 0);
-      background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
-    }
   }
 
   img {
@@ -113,7 +115,6 @@ main {
             color: blue;
           }
       }
-
     }
 
     .right-images {
