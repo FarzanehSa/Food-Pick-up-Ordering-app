@@ -18,6 +18,13 @@ $(document).ready(function () {
     }
   };
 
+  // set minimum valid time in Select-Time to be 11:00:00 or NOW
+  const now = new Date();
+  if (now.toTimeString() > '11:00:00') {
+    const min = now.toTimeString().slice(0, 8);
+    $('#select-time').attr({'min': `${min}`});
+  }
+
   // Next 2 events handler are for set time of pickup!
   $('#later').click(() => {
     if($('#later').is(':checked'))
