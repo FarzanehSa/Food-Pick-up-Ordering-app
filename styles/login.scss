@@ -4,13 +4,32 @@ main {
   font-size: 17px;
   height: 100vh;
   background-color: #595757;
-  // background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
   background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
 
   .nav-bar {
     display: flex;
     justify-content: center;
     background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
+
+    .main-address {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+
+      .phone-email {
+        visibility: hidden;
+        color: silver;
+        position: absolute;
+        right: 100%;
+        width: 220px;
+        border-radius: 20px 20px 0 20px;
+        padding-left: 14px;
+        padding-right: 8px;
+        background-color: rgb(0, 0, 0);
+        background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+      }
+    }
 
     .contact {
       color: black;
@@ -21,6 +40,15 @@ main {
       align-items: center;
       border: none;
       background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, rgb(133, 132, 132), rgb(161, 159, 159),  white);
+
+      &:hover {
+        color: rgb(61, 61, 226);
+        cursor: pointer;
+      }
+    }
+
+    .logo {
+      width: 180px;
     }
 
     .location {
@@ -30,11 +58,13 @@ main {
       align-items: center;
       border: none;
       background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to left, rgb(133, 132, 132), rgb(161, 159, 159),  white);
+
+      &:hover {
+        color: rgb(61, 61, 226);
+        cursor: pointer;
+      }
     }
 
-    .logo {
-      width: 180px;
-    }
   }
 
   img {
@@ -62,13 +92,13 @@ main {
 
       .login-cancel-buttons {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         margin-top: 3px;
 
         .login, .cancel {
           border: none;
           color: $button-font-color;
-          padding: 8px 14px;
+          padding: 6px 22px;
           text-align: center;
           text-decoration: none;
           display: inline-block;
@@ -80,8 +110,11 @@ main {
           .cancel:hover {
             color: red;
           }
-      }
 
+          .login:hover {
+            color: blue;
+          }
+      }
     }
 
     .right-images {
