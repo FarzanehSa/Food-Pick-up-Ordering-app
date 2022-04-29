@@ -66,14 +66,12 @@
             <span id="total-items" style="margin-bottom: 0.5em;"><%= Object.keys(cart).length %></span>
           </div>
         </div>
-          <!-- 👀❕⭕️ -->
           <form  class="place-order" action="/orders" method="POST">
-          <!-- <form  class="place-order" action="/orders/xx" method="POST"> -->
             <div class="time-pickup">
               <p>Please select pickup time</p>
               <div class="radio-selection">
                 <div class="radio">
-                  <input type="radio" id="now" name="pickupTime" value="now" required>
+                  <input type="radio" id="now" name="pickupTime" value="now" required checked>
                   <label for="now">as soon as possible</label>
                 </div>
                 <div class="radio">
