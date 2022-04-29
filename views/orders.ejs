@@ -15,8 +15,8 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 
+  <script type="text/javascript" src="/scripts/utilities.js"></script>
   <script type="text/javascript" src="/scripts/checkout.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/cart-counter.js"></script> -->
 </head>
 
 <body>
@@ -66,25 +66,23 @@
             <span id="total-items" style="margin-bottom: 0.5em;"><%= Object.keys(cart).length %></span>
           </div>
         </div>
-          <!-- 👀❕⭕️ -->
           <form  class="place-order" action="/orders" method="POST">
-          <!-- <form  class="place-order" action="/orders/xx" method="POST"> -->
             <div class="time-pickup">
               <p>Please select pickup time</p>
               <div class="radio-selection">
                 <div class="radio">
-                  <input type="radio" id="now" name="pickup-time" value="now" required>
+                  <input type="radio" id="now" name="pickupTime" value="now" required checked>
                   <label for="now">as soon as possible</label>
                 </div>
                 <div class="radio">
-                  <input type="radio" id="later" name="pickup-time" value="later" class="radio-s">
+                  <input type="radio" id="later" name="pickupTime" value="later" class="radio-s">
                   <label for="later" class="radio-s">set time</label>
                 </div>
               </div>
               <div>
                 <label for="select-time" class="time-p label-time-p"> Opening hours 11:00 to 20:00 </label>
                 <div>
-                  <input id="select-time" type="time" name="pickup-time-select" min="11:00" max="20:00" class="time-p" required>
+                  <input id="select-time" type="time" name="setPickupTime" min="11:00" max="20:00" class="time-p" required>
                   <span class="validity"></span>
                 </div>
               </div>
