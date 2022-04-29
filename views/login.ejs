@@ -6,57 +6,54 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
   <link rel="stylesheet" href="/styles/login.css" type="text/css" />
-
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/cart-counter.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/utilities.js"></script>
+  <script type="text/javascript" src="/scripts/cart-counter.js"></script>
 </head>
-
 
 <body>
   <main>
-  <nav class="nav-bar">
-    <div class="test">
-      <div class="phone-email">
-        <span style="display: block;">Telephone: 123 456 7890</span>
-        <span style="display: block;">Email: taco@email.com</span>
+    <nav class="nav-bar">
+      <div class="main-address">
+        <div class="phone-email">
+          <span style="display: block;">Telephone: 123 456 7890</span>
+          <span style="display: block;">Email: taco@email.com</span>
+        </div>
       </div>
+      <button class="contact"><i class="fa-solid fa-mobile-screen-button"></i>Contact us</button>
+      <img class="logo" src="/images/logo.png">
+      <button class="location"><i class="fa-solid fa-location-dot" ></i> Location</button>
+    </nav>
+    <div class="form">
+      <form id="login-form" class="login-form" action="/users" method="POST">
+        <div class="left-images">
+          <img style="transform: rotate(-10deg);" src="https://storage.googleapis.com/ueat-assets/fb453227-3581-495c-831c-5c5b4ae072cd.jpg">
+          <img style="transform: rotate(+10deg);" src="https://storage.googleapis.com/ueat-assets/4daa7c3f-d5e8-4f9f-9c18-43a0b042e613.jpg">
+          <img style="transform: rotate(-10deg);" src="https://storage.googleapis.com/ueat-assets/b15599ab-b1c5-4d90-aefa-6134ab5e4b20.jpg">
+        </div>
+        <div class="login-data">
+          <span style="font-weight: bold; padding-bottom: 4px;">Login:</span>
+          <div>
+            <input style="border-radius: 8px;" type="id" name="id" placeholder="ID">
+          </div>
+          <div class="login-cancel-buttons">
+            <button class="login">Login</button>
+            <button type="reset" class="cancel">Reset</button>
+          </div>
+        </div>
+        <div class="right-images">
+          <img style="transform: rotate(+10deg)" src="https://storage.googleapis.com/ueat-assets/70bcd28c-48e1-49de-a2b6-189d2e11fdb3.jpg">
+          <img style="transform: rotate(-10deg);" class="right-middle" src="https://storage.googleapis.com/ueat-assets/d501094c-b735-49b5-ae32-ff256aad7a39.jpg">
+          <img style="transform: rotate(+10deg);" src="https://tacotimecanada.com/wp-content/uploads/2020/12/TT_MexiFries_Deluxe.jpg">
+        </div>
+      </form>
     </div>
-    <button class="contact"><i class="fa-solid fa-mobile-screen-button"></i>Contact us</button>
-    <img class="logo" src="/images/logo.png">
-    <button class="location"><i class="fa-solid fa-location-dot" ></i> Location</button>
-  </nav>
-  <div class="form">
-  <form id="login-form" class="login-form" action="/users" method="POST">
-    <div class="left-images">
-      <img style="transform: rotate(-10deg);" src="https://storage.googleapis.com/ueat-assets/fb453227-3581-495c-831c-5c5b4ae072cd.jpg">
-      <img style="transform: rotate(+10deg);" src="https://storage.googleapis.com/ueat-assets/4daa7c3f-d5e8-4f9f-9c18-43a0b042e613.jpg">
-      <img style="transform: rotate(-10deg);" src="https://storage.googleapis.com/ueat-assets/b15599ab-b1c5-4d90-aefa-6134ab5e4b20.jpg">
-    </div>
-    <div class="login-data">
-    <span style="font-weight: bold; padding-bottom: 4px;">Login:</span>
-    <div>
-      <input style="border-radius: 8px;" type="id" name="id" placeholder="ID">
-    </div>
-    <div class="login-cancel-buttons">
-      <button class="login">Login</button>
-      <button type="reset" class="cancel">Reset</button>
-    </div>
-  </div>
-    <div class="right-images">
-      <img style="transform: rotate(+10deg)" src="https://storage.googleapis.com/ueat-assets/70bcd28c-48e1-49de-a2b6-189d2e11fdb3.jpg">
-      <img style="transform: rotate(-10deg);" class="right-middle" src="https://storage.googleapis.com/ueat-assets/d501094c-b735-49b5-ae32-ff256aad7a39.jpg">
-      <img style="transform: rotate(+10deg);" src="https://tacotimecanada.com/wp-content/uploads/2020/12/TT_MexiFries_Deluxe.jpg">
-    </div>
-  </form>
-</div>
-</main>
+  </main>
 </body>
 
 </html>
