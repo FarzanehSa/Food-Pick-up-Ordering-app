@@ -41,9 +41,13 @@
               <article class="price-on-right item-info">
                 <div class="order-row" name="<%= cart[item].id %>">
                   <div class="checkout-counter">
-                    <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-circle-plus"></i></button>
-                    <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
-                    <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-circle-minus"></i></button>
+                    <div>
+                      <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
+                    </div>
+                    <div>
+                      <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-angle-up"></i></button>
+                      <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-angle-down"></i></button>
+                    </div>
                   </div>
                   <div>
                     <img src="<%= cart[item].image %>"/>
@@ -90,7 +94,7 @@
               <div>
                 <label for="select-time" class="time-p label-time-p"> Opening hours 11am to 8pm </label>
                 <div>
-                  <input id="select-time" type="time" name="setPickupTime" min="11:00" max="20:00" class="time-p" required>
+                  <input id="select-time" type="time" name="setPickupTime" min="11:00" max="20:00" class="time-p">
                   <span class="validity"></span>
                 </div>
               </div>
