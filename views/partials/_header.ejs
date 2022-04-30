@@ -4,18 +4,27 @@
       <div class="logo">
         <img src="/images/logo.png">
       </div>
-      <div class="left-buttons">
-        <button class="nav-button"><a class="nav-link" href="/menu">Menu</a></button>
-        <button class="nav-button"><a class="nav-link" href="/orders">Pending Orders</a></button>
-      </div>
+      <% if (user.access_level == 0) { %>
+        <div class="left-buttons">
+          <button class="nav-button"><a class="nav-link" href="/menu">Menu</a></button>
+          <button class="nav-button"><a class="nav-link" href="/orders">Pending Orders</a></button>
+        </div>
+      <% } else {%>
+        <div class="left-buttons">
+          <button class="nav-button"><a class="nav-link" href="/orders/new-orders">New Orders</a></button>
+          <button class="nav-button"><a class="nav-link" href="/orders/inprogress-orders">Inprogress Orders</a></button>
+        </div>
+      <% } %>
       <div class = "right-buttons">
         <!-- <span><i class="fa-solid fa-cart-shopping"></i></span> -->
+        <% if (user.access_level == 0) { %>
         <form  class="goToCheckout button" action="/orders" method="GET">
           <button type="submit" class="nav-button" id="cart-button">
             <i class="fa-solid fa-cart-shopping"></i>
             <output id="main-cart-qty">0</output>
           </button>
         </form>
+        <% } %>
         <form  class="logoutForm" action="/users/logout" method="POST">
           <label style="margin: 1em">Hi <%= user.name %> ! </label>
           <button class="nav-button" type="submit" >Logout</button>
