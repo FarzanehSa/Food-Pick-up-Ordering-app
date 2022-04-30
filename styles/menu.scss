@@ -1,14 +1,40 @@
 @import '_variables';
 
 main {
+  .category-row {
+
+    color: gold;
+    height: 60px;
+    margin : 0.1em;
+    margin-top: 0.5em;
+    background: $primery-background-image;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+    &:hover {
+      cursor: pointer;
+    }
+    .cat-arrow-up {
+      display: none;
+    }
+  }
+
+  .dropdown {
+    display: inline-block;
+  }
+
   .menu-items {
+    // background: $primery-background-image;
+    background: transparent;
     font-size: 20px;
     display: flex;
     flex-wrap:wrap;
-    justify-content: space-between;
+    justify-content:space-evenly;
+    justify-content:start;
   }
   .food-item {
 
+    margin-right:2em;
     border: 1px solid black;;
     border-radius:10%;
     height: 220px;
@@ -17,7 +43,9 @@ main {
     width: 400px;
     min-width: 32%;
 
-    background-color: $item-box-background-color;
+    // 👀
+    background: $primery-background-image;
+    // background-color: $item-box-background-color;
     display: flex;
     align-items: center;
     flex-wrap:nowrap;
@@ -92,6 +120,21 @@ main {
       }
     }
 
+  }
+  .dropdown-content0 {
+    display: none;
+  }
+  .dropdown-content1 {
+    display: none;
+  }
+  .dropdown-content2 {
+    display: none;
+  }
+  .dropdown-content3 {
+    display: none;
+  }
+  .dropdown-content4 {
+    display: none;
   }
 }
 

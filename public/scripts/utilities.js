@@ -63,3 +63,22 @@ const checkoutTotal = function (cart) {
 const calculateItemTotal = (price, qty) => {
   return ((price / 100) * qty).toFixed(2);
 };
+
+// close and open each category.
+const categoryDropdown = function(catList, catId) {
+  if (catList.first().is(":hidden")) {
+    $(`.dropdown-content${catId}`).slideDown("slow")
+    $(`.dropdown-content${catId}`).css('display', 'flex');
+    $(`.dropdown${catId}`).find(".cat-arrow-up").css('display', 'block');
+    $(`.dropdown${catId}`).find(".cat-arrow-down").css('display', 'none');
+    $(`.dropdown${catId}`).css('color', 'whitesmoke');
+  } else {
+    // $(`.dropdown-content${catId}`).hide();
+    $(`.dropdown-content${catId}`).slideUp("slow");
+    $(`.dropdown${catId}`).find(".cat-arrow-up").css('display', 'none');
+    $(`.dropdown${catId}`).find(".cat-arrow-down").css('display', 'block');
+    $(`.dropdown${catId}`).css('color', 'whitesmoke');
+    $(`.dropdown${catId}`).css('color', 'gold');
+
+  }
+}

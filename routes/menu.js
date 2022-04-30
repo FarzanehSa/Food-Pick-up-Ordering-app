@@ -6,7 +6,10 @@
 
 const express = require('express');
 const { cookie } = require('express/lib/response');
-const { getAllMenuItems, getItemById } = require('../db/queries/database');
+const { getAllMenuItems } = require('../db/queries/menu/01-getAllMenuItems');
+const { getItemById } = require('../db/queries/menu/02-getItemById');
+const { getCategories } = require('../db/queries/menu/03-getCategories');
+const { getAllItemsIdInCategory } = require('../javaScripts/helperFunctions.js');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -18,16 +21,31 @@ module.exports = (db) => {
     if (!user)  {
       res.redirect("/users");
     }
-    getAllMenuItems(db)
+
+    getCategories(db)
       .then(data => {
-        menuItems = data.rows
-        res.render("menu", { menuItems, user});
+        const categories = data.rows;
+        return categories;
       })
+      .then (categories => {
+        getAllMenuItems(db)
+        .then(data => {
+          const menuItems = data.rows;
+          // list of all items in one category
+          const categoryItems = getAllItemsIdInCategory(categories, menuItems)
+          res.render("menu", { categoryItems, menuItems, categories, user});
+        })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+        });
+      })
+      .catch(err => {
+        res
+        .status(500)
+        .json({ error: err.message });
+      });;
   });
 
   // menu/:id
@@ -51,4 +69,3 @@ module.exports = (db) => {
   });
   return router;
 };
-

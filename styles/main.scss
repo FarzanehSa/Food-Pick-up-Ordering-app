@@ -8,6 +8,14 @@ html {
 }
 
 body {
+  // 👀 test
+  background: $primery-background-image;
+  // background-size: cover;
+  background-size: center;
+
+
+  //
+  font-family       : 'Source Sans Pro', sans-serif;
   display           : flex;
   flex-direction    : column;
   width             : 100%;

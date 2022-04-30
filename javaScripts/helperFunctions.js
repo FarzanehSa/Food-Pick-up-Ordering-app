@@ -36,5 +36,18 @@ const createOrderInfoObject = function(userObject, detailObject) {
   return order;
 }
 
-  module.exports = { OrderReceivedAlert, createOrderInfoObject };
+const getAllItemsIdInCategory = function(categories, menuItems) {
+  let categoryItems = {};
+  for (const cat of categories) {
+    categoryItems[cat.id] = []
+    for (const item of menuItems) {
+      if (cat.id === item.category_id) {
+        categoryItems[cat.id].push(item.id)
+      }
+    }
+  }
+  return categoryItems;
+}
+
+  module.exports = { OrderReceivedAlert, createOrderInfoObject, getAllItemsIdInCategory };
 

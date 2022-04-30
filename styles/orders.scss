@@ -1,7 +1,7 @@
 @import '_variables';
 
 main {
-  font-size: 19px;
+  font-size: 23px;
   // border: $test;
   // padding-right: 5em;
   // margin-right: 5em;
@@ -51,24 +51,25 @@ main {
     .checkout-counter{
       // border:$test;
       display: flex;
-      flex-direction: column;
+      // flex-direction: column;
       align-items: center;
 
       .minus-plus {
         font-size: 15px;
         border:none;
         background-color: transparent;
-        color: black;
+        color: whitesmoke;
 
         &:hover {
-          font-size: 19px;
           color: red;
           cursor: pointer;
         }
       }
+
       .single-item-qty {
         font-size: 24px;
-        color: green;
+        font-weight: 600;
+        color: red;
       }
     }
 
@@ -82,6 +83,7 @@ main {
       font-size: 22px;
       border: none;
       outline         : none;
+      background-color: transparent;
 
 
       &:hover, &:focus {
@@ -96,17 +98,25 @@ main {
   }
 
   #checkout-right-side {
-    background-color: Linen;
-    border:0.5px solid black;
+    // 👀
+
+    background: $primery-background-image;
+
+
+    // background-color: Linen;
+    // border:0.5px solid black;
     border-radius: 10%;
     width: 30%;
     margin-right: 5em;
     padding: 1em;
 
+
+    white-space: nowrap;
     .order-total {
       background    : $main-background-color;
       font-weight: 700;
-      color: green;
+      // color: green;
+      color: brown;
       font-size: 24px;
       height: 150px;
       border:0.5px solid black;
@@ -167,17 +177,29 @@ main {
       align-items: center;
       justify-content: center;
 
-      #cash-register {
-        border: none;
-        background-color: gold;
-        // background-color: $menu-background-color;
-        border-radius: 16px;
-        padding: 20px 30px;
-        font-size: 30px;
+      // 👀
+      // #cash-register {
+      //   border: none;
+      //   background-color: gold;
+      //   // background-color: $menu-background-color;
+      //   border-radius: 16px;
+      //   padding: 20px 30px;
+      //   font-size: 30px;
 
-        &:hover {
-          cursor: pointer;
-          background-color: DarkOrange;
+      //   &:hover {
+      //     cursor: pointer;
+      //     background-color: DarkOrange;
+      //   }
+      // }
+
+      #cash-register {
+        @include button-back(340deg);
+        &:hover .front-cash-register {
+          transform: $transform;
+        }
+
+        .front-cash-register {
+          @include button-front(345deg, whitesmoke);
         }
       }
     }

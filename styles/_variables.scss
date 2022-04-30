@@ -1,14 +1,20 @@
+// font-family
+$primery-font-family        : 'Source Sans Pro', sans-serif;
+
 // font-size
 $primery-font-siza          : 24px;
 
 // font-color
-$primery-font-color         : #545149;
+$primery-font-color         :whitesmoke;
+// $primery-font-color         : #545149;
 $button-font-color          : Teal;
 $warning-font-color         : Crimson;
 
+// background-image
+$primery-background-image     :url(/images/background2.jpg);
+$secondary-background-image     :url(/images/background1.jpg);
 
-
-// backround
+// background
 $main-background-color          : #f9f9f9;
 $item-box-background-color      : mintcream;
 $button-hover-background-color  : khaki;
@@ -19,3 +25,26 @@ $shadow-color                   : silver;
 
 // border
 $test        : 2px solid black;
+
+
+// mixins can take parameters as well
+@mixin button-back($a) {
+  background: hsl($a 100% 32%);
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+
+@mixin button-front($a, $b) {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  background: hsl($a 100% 47%); // a+5
+  color: $b;
+  transform: translateY(-8px);
+}
+
+$transform: translateY(-2px);

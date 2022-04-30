@@ -66,7 +66,7 @@ $(document).ready(function () {
 
     $('.checkout-plus-qty').click(function () {
     // Find the counter element & update qty
-    const singleItemQty = $(this).parent().find('.checkout-item-qty');
+    const singleItemQty = $(this).closest('.checkout-counter').find('.checkout-item-qty');
     let singleItemQtyVal = singleItemQty.val();
     singleItemQtyVal++;
 
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
   $('.checkout-minus-qty').click(function () {
     // Find the counter element & update qty
-    const singleItemQty = $(this).parent().find('.checkout-item-qty');
+    const singleItemQty = $(this).closest('.checkout-counter').find('.checkout-item-qty');
     let singleItemQtyVal = singleItemQty.val();
     if (singleItemQtyVal > 1) {
       singleItemQtyVal--;

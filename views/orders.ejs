@@ -4,6 +4,14 @@
 <head>
   <title>Checkout</title>
 
+  <!-- icon -->
+  <link rel="icon" href="/images/logo.png" type="image/x-icon" />
+
+  <!-- Source Sans Pro  300, 600, italic of each -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
@@ -33,9 +41,17 @@
               <article class="price-on-right item-info">
                 <div class="order-row" name="<%= cart[item].id %>">
                   <div class="checkout-counter">
-                    <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-circle-plus"></i></button>
-                    <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
-                    <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-circle-minus"></i></button>
+                    <div>
+                      <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
+                    </div>
+                    <div>
+                      <button class="plus-qty-item minus-plus checkout-plus-qty">
+                        <span class="front-minus-plus"><i class="fa-solid fa-angle-up"></i></span>
+                      </button>
+                      <button class="minus-qty-item minus-plus checkout-minus-qty">
+                        <span class="front-minus-plus"><i class="fa-solid fa-angle-down"></i></span>
+                      </button>
+                    </div>
                   </div>
                   <div>
                     <img src="<%= cart[item].image %>"/>
@@ -91,7 +107,9 @@
               <textarea name="comment" id="comment-text" maxlength="60" placeholder="Special instructions (Napkins, etc..)"></textarea>
             </div>
             <div class="checkout-button">
-              <button id="cash-register" type="submit"><i class="fa-solid fa-cash-register"></i> Checkout</button>
+              <button id="cash-register" type="submit">
+                <span class="front-cash-register"><i class="fa-solid fa-cash-register"></i> Checkout</span>
+              </button>
             </div>
           </form>
       </div>
