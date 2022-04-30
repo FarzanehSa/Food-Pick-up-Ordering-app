@@ -17,7 +17,9 @@ main {
     width: 400px;
     min-width: 32%;
 
-    background-color: $item-box-background-color;
+    // 👀
+    background: $primery-background-image;
+    // background-color: $item-box-background-color;
     display: flex;
     align-items: center;
     flex-wrap:nowrap;

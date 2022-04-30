@@ -45,8 +45,12 @@
                       <output class="single-item-qty counter-text checkout-item-qty"><%= cart[item].qty %></output>
                     </div>
                     <div>
-                      <button class="plus-qty-item minus-plus checkout-plus-qty"><i class="fa-solid fa-angle-up"></i></button>
-                      <button class="minus-qty-item minus-plus checkout-minus-qty"><i class="fa-solid fa-angle-down"></i></button>
+                      <button class="plus-qty-item minus-plus checkout-plus-qty">
+                        <span class="front-minus-plus"><i class="fa-solid fa-angle-up"></i></span>
+                      </button>
+                      <button class="minus-qty-item minus-plus checkout-minus-qty">
+                        <span class="front-minus-plus"><i class="fa-solid fa-angle-down"></i></span>
+                      </button>
                     </div>
                   </div>
                   <div>
@@ -103,7 +107,9 @@
               <textarea name="comment" id="comment-text" maxlength="60" placeholder="Special instructions (Napkins, etc..)"></textarea>
             </div>
             <div class="checkout-button">
-              <button id="cash-register" type="submit"><i class="fa-solid fa-cash-register"></i> Checkout</button>
+              <button id="cash-register" type="submit">
+                <span class="front-cash-register"><i class="fa-solid fa-cash-register"></i> Checkout</span>
+              </button>
             </div>
           </form>
       </div>
