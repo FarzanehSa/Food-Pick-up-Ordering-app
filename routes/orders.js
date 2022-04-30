@@ -78,6 +78,16 @@ module.exports = (db) => {
     });
 
   });
+
+
+  router.get("/new-orders", (req, res) => {
+    const user = req.session.user;
+    if (!user)  {
+      res.redirect("/users");
+      return;
+    }
+    res.render("new-orders", {user});
+  });
   return router;
 };
 
