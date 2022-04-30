@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang=""en>
+
+<head>
+  <title>My Orders</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/my-orders.css" type="text/css" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/utilities.js"></script> -->
+  <script type="text/javascript" src="/scripts/my-orders.js"></script>
+
+  <!-- <script type="text/javascript" src="/scripts/utilities.js"></script>
+  <script type="text/javascript" src="/scripts/cart-counter.js"></script> -->
+
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <main>
+    <div class="title-row">
+      <div class="test">
+        <span>Date</span>
+        <span style="padding-left: 80px;">Order Number</span>
+        <span style="padding-left: 60px;">Details</span>
+      </div>
+      <span style="padding-left: 136px;">Qty</span>
+      <span style="padding-left: 25px;">Total</span>
+      <span style="padding-right: 34px;">Status</span>
+    </div>
+    <hr style="width: 1000px;">
+
+    <% for(const order of orders) { %>
+      <div class="details-row">
+          <div class="test">
+            <span><%= new Date(order.order_time).toDateString() %></span>
+            <span style="padding-left: 55px;"><%= order.id %></span>
+            <span style="padding-left: 98px;"><%= order.name %></span>
+          </div>
+          <span style="padding-left: 65px;"><%= order.qty %></span>
+          <span style="padding-left: 105px;">$ <%= order.price / 100 %></span>
+          <span style="padding-left: 85px;"><%= order.status ? 'Completed' : 'Processing' %></span>
+        </div>
+        <hr style="width: 1000px;">
+      <% } %>
+  </main>
+</body>
+</html>
