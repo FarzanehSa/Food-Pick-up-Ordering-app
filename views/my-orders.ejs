@@ -46,7 +46,8 @@
           </div>
           <span style="padding-left: 65px;"><%= order.qty %></span>
           <span style="padding-left: 105px;">$ <%= order.price / 100 %></span>
-          <span style="padding-left: 85px;"><%= order.status ? 'Completed' : 'Processing' %></span>
+          <!-- <span style="padding-left: 85px;"><%= order.status ? 'Completed' : 'Processing' %></span> -->
+          <span style="padding-left: 85px;"><%= order.status_name %></span>
         </div>
         <hr style="width: 1000px;">
       <% } %>
