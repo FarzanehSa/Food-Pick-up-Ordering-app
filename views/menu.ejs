@@ -31,29 +31,51 @@
 <body>
   <%- include('partials/_header') %>
   <main>
-    <div class="menu-items">
-      <% if (menuItems) { %>
-        <% for (const menuItem of menuItems) { %>
-          <div class="food-item for-cookie-item" name="<%= menuItem.id %>">
-            <a href="http://localhost:8080/menu/<%= menuItem.id %>">
-            <button name="click-item" class = "item-img"><img src="<%= menuItem.image_url %>" class="for-cookie-img"/></button>
-            </a>
-            <div class="item-info">
-              <div class="item-name">
-                <span class="for-cookie-name"><%= menuItem.name %></span>
-              </div>
-              <span class="item-price for-cookie-price" name="<%= menuItem.price %>">$ <%= menuItem.price / 100 %></span>
-              <div class="cart-addition">
-                <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
-                <output class="single-item-qty" class="counter button">0</output>
-                <button class="plus-qty-item minus-plus"><i class="fa-solid fa-circle-plus"></i></button>
-              </div>
-              <button class="add-to-cart">add to cart</button>
-            </div>
+    <div class="categories">
+      <% if (categories) { %>
+        <% for (const category of categories) { %>
+          <div class="category-row dropdown<%= category.id %>" name="<%= category.id %>">
+            <span name="<%= category.id %>"><%= category.name %>&nbsp&nbsp</span>
+            <snap class="cat-arrow cat-arrow-down"><i class="fa-solid fa-caret-down"></i></snap>
+            <snap class="cat-arrow cat-arrow-up"><i class="fa-solid fa-caret-up"></i></snap>
+          </div>
+
+
+          <div class="menu-items">
+            <% if (menuItems) { %>
+              <% for (const x of categoryItems[category.id]) { %>
+                <div class="0">
+
+
+                  <div class="food-item for-cookie-item dropdown-content<%=category.id%>" name="<%= menuItems[x].id %>">
+                    <a href="http://localhost:8080/menu/<%= menuItems[x].id %>">
+                    <button name="click-item" class = "item-img"><img src="<%= menuItems[x].image_url %>" class="for-cookie-img"/></button>
+                    </a>
+                    <div class="item-info">
+                      <div class="item-name">
+                        <span class="for-cookie-name"><%= menuItems[x].name %></span>
+                      </div>
+                      <span class="item-price for-cookie-price" name="<%= menuItems[x].price %>">$ <%= menuItems[x].price / 100 %></span>
+                      <div class="cart-addition">
+                        <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
+                        <output class="single-item-qty" class="counter button">0</output>
+                        <button class="plus-qty-item minus-plus"><i class="fa-solid fa-circle-plus"></i></button>
+                      </div>
+                      <button class="add-to-cart">add to cart</button>
+                    </div>
+                  </div>
+
+                </div>
+              <% } %>
+            <% } %>
           </div>
         <% } %>
       <% } %>
     </div>
+
+
+
+
   </main>
 </body>
 </html>
