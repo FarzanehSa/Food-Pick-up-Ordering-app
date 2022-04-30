@@ -36,7 +36,11 @@ module.exports = (db) => {
         req.session.userId = user.id;
         req.session.accessLevel= user.access_level;
         console.log('🛗 cookei ', req.session)   // 🚨🚨🚨
-        res.redirect("/menu");
+        if (user.access_level === 1) {
+          res.redirect("/orders/new-orders");
+        } else {
+          res.redirect("/menu");
+        }
         return;
       })
       .catch(err => {
