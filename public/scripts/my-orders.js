@@ -6,6 +6,4 @@ $(document).ready(function () {
   const orderHistoryIcon = $('#main-cart-qty');
   $('#history-tab').css('visibility', 'hidden');
 
-
-
 });
