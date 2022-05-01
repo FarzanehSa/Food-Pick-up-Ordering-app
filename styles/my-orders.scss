@@ -1,20 +1,22 @@
-main {
-  display: flex;
-  flex-direction: column;
+@import '_variables';
 
-  .title-row {
-    // position: fixed;
-    display: flex;
-    justify-content: space-between;
-    width: 1000px;
-    margin: auto;
+body {
+  font-family: $primery-font-family;
+  font-size: 20px;
 
+  .all-table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+  text-align: left;
+
+  th, td {
+    padding: 10px 0px;
   }
 
-  .details-row {
-    font-size: 18px;
-    display: flex;
-    width: 1000px;
-    margin: auto;
+  .main-row, .customer-row {
+    border-bottom: 2px solid #ddd;
   }
+  }
+
 }
