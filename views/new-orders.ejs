@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/new-orders.css" type="text/css" />
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -24,17 +24,88 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 
   <script type="text/javascript" src="/scripts/utilities.js"></script>
-  <script type="text/javascript" src="/scripts/checkout.js"></script>
 </head>
 
 <body>
   <%- include('partials/_header') %>
   <main>
+    <div id="pending-orders-page">
+      <div id="management-tab">
 
+      </div>
+      <div class="orders-table">
+        <h2>Pending Orders</h2>
+        <div class="data-table">
+          <div class="group-table">
+            <div class="table-order-number">
+              <span>Order Number</span>
+            </div>
+            <div class="table-date">
+              <span>Date</span>
+            </div>
+            <div class="table-comment">
+              <span>Comment</span>
+            </div>
+            <div class="table-pickup-time">
+              <span>Pickup Time</span>
+            </div>
+            <div class="table-user-name">
+              <span>Customer</span>
+            </div>
+            <div class="table-total">
+              <span>Total</span>
+            </div>
+          </div>
+          <div class="detail-table">
+            <div class="table-item">
+              <span>Item</span>
+            </div>
+            <div class="table-qty">
+              <span>Qty</span>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <hr/>
 
-
-
-
+        <% for (const order of pendingOrders) { %>
+          <div class="data-table">
+            <div class="group-table">
+              <div class="table-order-number">
+                <span><%= order.order_id %></span>
+              </div>
+              <div class="table-date">
+                <span><%= order.order_time %></span>
+              </div>
+              <div class="table-comment">
+                <span><%= order.comment %></span>
+              </div>
+              <div class="table-pickup-time">
+                <span><%= order.pickup_time %></span>
+              </div>
+              <div class="table-user-name">
+                <span><%= order.customer_name %></span>
+              </div>
+              <div class="table-total">
+                <span>$<%= (ordersTotal[order.order_id]) / 100 %></span>
+              </div>
+            </div>
+            <div class="detail-table">
+              <% for (const item of itemsInOrder) { %>
+                <div class="row-detail-data">
+                  <div class="table-item">
+                    <span><%= item.item %></span>
+                  </div>
+                  <div class="table-qty">
+                    <span><%= item.qty %></span>
+                  </div>
+                </div>
+                <% } %>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
   </main>
 </body>
 </html>

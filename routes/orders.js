@@ -7,6 +7,9 @@
 const express = require('express');
 const { addOrder } = require('../db/queries/orders/01-addOrder');
 const { addOrderItem } = require('../db/queries/orders/02-addOrderItems');
+const { getAllOrderedItemsByStatus } = require('../db/queries/orders/05_getAllOrderedItemsByStatus');
+const { getAllOrdersByStatus } = require('../db/queries/orders//06-getAllOrdersByStatus');
+const { ordersTotalByStatus } = require('../db/queries/orders/07_ordersTotalByStatus');
 const { OrderReceivedAlert, createOrderInfoObject } = require('../javaScripts/helperFunctions.js');
 const router  = express.Router();
 
@@ -86,7 +89,46 @@ module.exports = (db) => {
       res.redirect("/users");
       return;
     }
-    res.render("new-orders", {user});
+    getAllOrderedItemsByStatus(db, 0)
+    .then(data => {
+      const itemsList = data.rows;
+
+      let itemsInOrder = []
+      for (const row of itemsList) {
+        console.log('🎥',row);
+        let x = {};
+        // itemsInOrder[row.order_id] = row;
+        x[row.order_id] = row;
+        itemsInOrder.push(x);
+      }
+
+
+
+      getAllOrdersByStatus(db, 0)
+      .then(data => {
+        const pendingOrders = data.rows
+        ordersTotalByStatus(db, 0)
+        .then(data => {
+          const totalList = data.rows
+          console.log('⏱', itemsInOrder);
+          console.log('⏱', pendingOrders);
+
+          let ordersTotal = {}
+          for (const row of totalList) {
+            ordersTotal[row.id] = row.total;
+          }
+
+
+          console.log('⏱', ordersTotal);
+          res.render("new-orders", { itemsInOrder, pendingOrders, ordersTotal,  user});
+        })
+      })
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   });
   return router;
 };

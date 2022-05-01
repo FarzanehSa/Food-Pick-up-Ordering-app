@@ -1,0 +1,68 @@
+#pending-orders-page {
+
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+
+
+
+
+  .data-table {
+    display: flex;
+    border: 2px solid black;
+    width: 100%;
+  }
+
+  .group-table {
+    display: flex;
+    border: 2px solid red;
+    width: 70%;
+  }
+  .detail-table {
+    width: 30%;
+    border: 2px solid blue;
+  }
+
+  // ----------------------------
+
+
+
+
+  .detail-data {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid goldenrod;
+  }
+  .row-detail-data {
+    display: flex;
+  }
+
+
+  .table-order-number{
+    width: 5%;
+  }
+  .table-date{
+    width: 5%;
+  }
+  .table-user-name{
+    width: 15%;
+  }
+
+  .table-total{
+    width: 7%;
+  }
+  .table-comment{
+    width: 20%;
+  }
+  .table-pickup-time{
+    width: 8%;
+  }
+
+
+
+
+
+
+
+
+}
