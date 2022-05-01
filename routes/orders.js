@@ -91,35 +91,23 @@ module.exports = (db) => {
     }
     getAllOrderedItemsByStatus(db, 0)
     .then(data => {
-      const itemsList = data.rows;
-
-      let itemsInOrder = []
-      for (const row of itemsList) {
-        console.log('🎥',row);
-        let x = {};
-        // itemsInOrder[row.order_id] = row;
-        x[row.order_id] = row;
-        itemsInOrder.push(x);
-      }
-
-
-
+      const itemsInOrder = data.rows;
       getAllOrdersByStatus(db, 0)
       .then(data => {
         const pendingOrders = data.rows
         ordersTotalByStatus(db, 0)
         .then(data => {
           const totalList = data.rows
-          console.log('⏱', itemsInOrder);
-          console.log('⏱', pendingOrders);
+          // console.log('⏱', itemsInOrder);    // 🚨🚨🚨
+          // console.log('⏱', pendingOrders);   // 🚨🚨🚨
 
+          // change the format of totalList so we can use it with orderId as key!
           let ordersTotal = {}
           for (const row of totalList) {
             ordersTotal[row.id] = row.total;
           }
 
-
-          console.log('⏱', ordersTotal);
+          // console.log('⏱', ordersTotal);     // 🚨🚨🚨
           res.render("new-orders", { itemsInOrder, pendingOrders, ordersTotal,  user});
         })
       })

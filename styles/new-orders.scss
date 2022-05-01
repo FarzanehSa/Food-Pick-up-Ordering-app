@@ -7,57 +7,72 @@
 
 
 
+
   .data-table {
+    text-align: center;
     display: flex;
-    border: 2px solid black;
+    border: 1px solid whitesmoke;
     width: 100%;
   }
 
   .group-table {
+    margin-top: 0.5em;
     display: flex;
-    border: 2px solid red;
     width: 70%;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    color: black;
+    font-weight: 600;
   }
+
   .detail-table {
     width: 30%;
-    border: 2px solid blue;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
   }
 
   // ----------------------------
 
-
-
-
-  .detail-data {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid goldenrod;
-  }
   .row-detail-data {
     display: flex;
+    color: black;
+    font-weight: 600;
+    justify-content: space-between;
+    align-items: center;
   }
+
+
+
 
 
   .table-order-number{
-    width: 5%;
+    width: 12%;
+    border-right: 0.5px solid whitesmoke;
   }
   .table-date{
-    width: 5%;
+    width: 15%;
+    border-right: 0.5px solid whitesmoke;
   }
   .table-user-name{
-    width: 15%;
+    width: 20%;
+    border-right: 0.5px solid whitesmoke;
+
+  }
+
+  .table-comment{
+    width: 30%;
+    border-right: 0.5px solid whitesmoke;
+  }
+  .table-pickup-time{
+    width: 12%;
+    border-right: 0.5px solid whitesmoke;
   }
 
   .table-total{
-    width: 7%;
-  }
-  .table-comment{
-    width: 20%;
-  }
-  .table-pickup-time{
-    width: 8%;
-  }
+    width: 12%;
+    border-right: 0.5px solid whitesmoke;
 
+  }
 
 
 

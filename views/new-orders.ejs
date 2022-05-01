@@ -57,16 +57,18 @@
             </div>
           </div>
           <div class="detail-table">
-            <div class="table-item">
-              <span>Item</span>
-            </div>
-            <div class="table-qty">
-              <span>Qty</span>
+            <div class="row-detail-data">
+              <div class="title-table-item">
+                <span>Item</span>
+              </div>
+              <div class="title-table-qty">
+                <span>Qty</span>
+              </div>
             </div>
           </div>
         </div>
         <hr/>
-        <hr/>
+
 
         <% for (const order of pendingOrders) { %>
           <div class="data-table">
@@ -92,6 +94,7 @@
             </div>
             <div class="detail-table">
               <% for (const item of itemsInOrder) { %>
+                <% if (item.order_id === order.order_id) { %>
                 <div class="row-detail-data">
                   <div class="table-item">
                     <span><%= item.item %></span>
@@ -100,7 +103,9 @@
                     <span><%= item.qty %></span>
                   </div>
                 </div>
-                <% } %>
+                <hr/>
+                <% }
+              } %>
             </div>
           </div>
         <% } %>
