@@ -5,8 +5,10 @@ $primery-font-family        : 'Source Sans Pro', sans-serif;
 $primery-font-siza          : 24px;
 
 // font-color
-$primery-font-color         :whitesmoke;
-// $primery-font-color         : #545149;
+$primery-font-color         : whitesmoke;
+$secondary-font-color       : gold;
+$third-font-color           : brown;
+$forth-font-color           : #545149;
 $button-font-color          : Teal;
 $warning-font-color         : Crimson;
 
@@ -26,6 +28,12 @@ $shadow-color                   : silver;
 // border
 $test        : 2px solid black;
 
+@mixin hover-focus {
+  &:hover, &:focus {
+    border: none;
+    outline: none;
+  }
+}
 
 // mixins can take parameters as well
 @mixin button-back($a) {
@@ -42,9 +50,10 @@ $test        : 2px solid black;
   padding: 12px 42px;
   border-radius: 12px;
   font-size: 1.25rem;
-  background: hsl($a 100% 47%); // a+5
+  background: hsl($a 100% 47%); // a in back +5
   color: $b;
   transform: translateY(-8px);
 }
 
+// for buttons
 $transform: translateY(-2px);

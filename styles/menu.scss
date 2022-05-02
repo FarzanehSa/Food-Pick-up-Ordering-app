@@ -1,128 +1,146 @@
 @import '_variables';
 
 main {
-  .category-row {
 
-    color: gold;
-    height: 60px;
-    margin : 0.1em;
-    margin-top: 0.5em;
-    background: $primery-background-image;
-    display: flex;
-    align-items: center;
-    padding-left: 1em;
+  .category-row {
+    height          : 60px;
+    margin          : 0.1em;
+    margin-top      : 0.5em;
+    padding-left    : 1em;
+    color           : $secondary-font-color;
+    background      : $primery-background-image;
+    display         : flex;
+    align-items     : center;
+
     &:hover {
-      cursor: pointer;
-      filter: brightness(150%);
+      cursor    : pointer;
+      filter    : brightness(150%);
     }
+
     .cat-arrow-up {
-      display: none;
+      display   : none;
     }
   }
 
   .dropdown {
-    display: inline-block;
+    display     : inline-block;
   }
+
+ // -------------------------------------------------
 
   .menu-items {
-    background: transparent;
-    font-size: 20px;
-    display: flex;
-    flex-wrap:wrap;
-    justify-content:space-evenly;
-    justify-content:start;
+    font-size         : 20px;
+    background        : transparent;
+    display           : flex;
+    flex-wrap         : wrap;
+    justify-content   : start;
   }
+
+  // -------------------------------------------------
 
   .food-item {
-    margin-right:2em;
-    border: 1px solid black;;
-    border-radius:10%;
-    height: 220px;
-    // width: 30%;
-    min-width: 32%;
-    width: 400px;
-    min-width: 32%;
+    height              : 220px;
+    width               : 400px;
+    min-width           : 32%;
+    margin-top          : 2em;
+    margin-right        : 2em;
+    border-radius       : 10%;
 
-    background: $primery-background-image;
-    display: flex;
-    align-items: center;
-    flex-wrap:nowrap;
-    margin-top: 2em;
+    background          : $primery-background-image;
+    display             : flex;
+    align-items         : center;
+    flex-wrap           : nowrap;
+
     &:hover {
-      filter: brightness(110%);
+      filter            : brightness(110%);
     }
   }
 
+  // -------------------------------------------------
+
   .item-img {
-    border: none;
-    background: none;
-    margin-right: 1em;
+    margin-right        : 1em;
+    border              : none;
+    background          : none;
 
     img {
-      border-radius: 50%;
-      width: 200px;
-      margin-right: 0.5em;
+      width             : 200px;
+      margin-right      : 0.5em;
+      border-radius     : 50%;
     }
-    &:hover {
-      border-radius: 50%;
+    &:hover, &:focus {
+      border-radius   : 50%;
       // box-shadow: 0 1em 0.5em -0.3em;
       cursor: pointer;
       animation       : Rotate 2s infinite;
     }
+    @include hover-focus;
   }
 
+  // -------------------------------------------------
+
   .item-info {
-    margin-right: 0.5em;
-    margin-bottom: 0.3em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    // border: $test;
-    height: 200px;
-    width: 65%;
+    height            : 200px;
+    width             : 65%;
+    margin-right      : 0.5em;
+    margin-bottom     : 0.3em;
+    font-weight       : 600;
+    display           : flex;
+    flex-direction    : column;
+    justify-content   : center;
+    align-items       : center;
 
     .item-name {
-      text-align: center;
-      margin-top: 0.2em;
-      margin-bottom: 0.4em;
+      margin-top    : 0.2em;
+      margin-bottom : 0.4em;
+      text-align    : center;
     }
 
     .item-price {
-      color: red;
+      color              : $secondary-font-color;
     }
 
     .cart-addition {
-      margin: 1em 0em 0.5em 0em;
+      margin              : 1em 0em 0.5em 0em;
 
       .minus-plus {
-        border:none;
-        background-color: transparent;
-        color: black;
+        border            :none;
+        color             : goldenrod;
+        background-color  : transparent;
 
-        &:hover {
-          color: red;
-          cursor: pointer;
+        &:hover, &:focus {
+          color           : red;
+          cursor          : pointer;
         }
-      }
-    }
-    .add-to-cart {
-      border: none;
-      color: $button-font-color;
-      padding: 8px 14px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 16px;
-      background-color: $menu-background-color;
-      &:hover {
-        background-color: $button-hover-background-color;
+        @include hover-focus;
       }
     }
 
+  // -------------------------------------------------
+
+    .add-to-cart {
+      @include button-back(25deg);
+      @include hover-focus;
+
+      &:hover .front-add-to-cart {
+        transform: $transform;
+      }
+
+      &:focus .front-add-to-cart {
+        transform: $transform;
+      }
+
+      .front-add-to-cart {
+        @include button-front(30deg, whitesmoke);
+        color: $third-font-color;
+        padding      : 8px 16px;
+      }
+    }
   }
+
+  // -------------------------------------------------
+
+  // categories dropdown hidden at first
   .dropdown-content0 {
     display: none;
   }
@@ -138,11 +156,13 @@ main {
   .dropdown-content4 {
     display: none;
   }
+
 }
 
+// for item image
 @keyframes Rotate {
-  0% { transform: rotate(0deg) }
-  30% { transform: rotate(-3deg) }
-  72% {transform: rotate(0deg)}
+  0%   { transform: rotate(0deg) }
+  30%  { transform: rotate(-3deg)}
+  72%  { transform: rotate(0deg) }
   100% { transform: rotate(3deg) }
 }
