@@ -14,11 +14,7 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/utilities.js"></script> -->
   <script type="text/javascript" src="/scripts/my-orders.js"></script>
-
-  <!-- <script type="text/javascript" src="/scripts/utilities.js"></script>
-  <script type="text/javascript" src="/scripts/cart-counter.js"></script> -->
 
 </head>
 
@@ -29,19 +25,26 @@
       <tr class="main-row">
         <th>Date</th>
         <th>Order Number</th>
-        <th>Details</th>
-        <th >Qty</th>
-        <th style="text-align: right;">Total</th>
-        <th style="text-align: right;">Status</th>
+        <th>Details and Qty</th>
+        <th>Total</th>
+        <th>Status</th>
       </tr>
       <% for(const order of orders) { %>
       <tr class="customer-row">
         <td><%= new Date(order.order_time).toDateString() %></td>
         <td><%= order.id %></td>
-        <td><%= order.name %></td>
-        <td><%= order.qty %></td>
-        <td style="text-align: right;">$ <%= order.price / 100 %></td>
-        <td style="text-align: right;"><%= order.status_name %></td>
+        <td>
+          <table>
+            <% for(const item of order.items) { %>
+              <tr class="customer-row">
+                <td style="max-width: 200px;"><%= item.name %></td>
+                <td style="padding-left: 50px;">x <%= item.qty %></td>
+              </tr>
+              <% } %>
+          </table>
+        </td>
+        <td>$ <%= order.total %></td>
+        <td><%= order.status %></td>
       </tr>
       <% } %>
     </table>
