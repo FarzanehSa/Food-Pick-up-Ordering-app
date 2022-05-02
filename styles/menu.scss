@@ -13,6 +13,7 @@ main {
     padding-left: 1em;
     &:hover {
       cursor: pointer;
+      filter: brightness(150%);
     }
     .cat-arrow-up {
       display: none;
@@ -24,7 +25,6 @@ main {
   }
 
   .menu-items {
-    // background: $primery-background-image;
     background: transparent;
     font-size: 20px;
     display: flex;
@@ -32,8 +32,8 @@ main {
     justify-content:space-evenly;
     justify-content:start;
   }
-  .food-item {
 
+  .food-item {
     margin-right:2em;
     border: 1px solid black;;
     border-radius:10%;
@@ -43,13 +43,14 @@ main {
     width: 400px;
     min-width: 32%;
 
-    // 👀
     background: $primery-background-image;
-    // background-color: $item-box-background-color;
     display: flex;
     align-items: center;
     flex-wrap:nowrap;
     margin-top: 2em;
+    &:hover {
+      filter: brightness(110%);
+    }
   }
 
   .item-img {
@@ -64,8 +65,9 @@ main {
     }
     &:hover {
       border-radius: 50%;
-      box-shadow: 0 0.5em 0.5em -0.3em;
+      // box-shadow: 0 1em 0.5em -0.3em;
       cursor: pointer;
+      animation       : Rotate 2s infinite;
     }
   }
 
@@ -138,5 +140,9 @@ main {
   }
 }
 
-
-
+@keyframes Rotate {
+  0% { transform: rotate(0deg) }
+  30% { transform: rotate(-3deg) }
+  72% {transform: rotate(0deg)}
+  100% { transform: rotate(3deg) }
+}
