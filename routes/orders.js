@@ -11,6 +11,7 @@ const { getAllOrderedItemsByStatus } = require('../db/queries/orders/05_getAllOr
 const { getAllOrdersByStatus } = require('../db/queries/orders//06-getAllOrdersByStatus');
 const { ordersTotalByStatus } = require('../db/queries/orders/07_ordersTotalByStatus');
 const { updateStatusById } = require('../db/queries/orders/08_updateStatusById');
+const { getUserById } = require('../db/queries/orders/09_getUserById');
 const { orderReceivedAlert, createOrderInfoObject, sendOrderDecision } = require('../javaScripts/helperFunctions.js');
 const router  = express.Router();
 
@@ -129,16 +130,25 @@ module.exports = (db) => {
       orderId = decision.accept;
       text = decision.replyText;
       statusId = 1;
-      console.log('😍',orderId, text)
+      // console.log('😍',orderId, text)
     } else if (decision.reject) {
       orderId = decision.reject;
       statusId = 3;
-      console.log('😡',orderId);
+      text = "Sorry, We can't accept your order today."
+      // console.log('😡',orderId);
     }
     updateStatusById(db, statusId, orderId)
     .then(data => {
-      console.log(data.rows)
-      res.redirect("/orders/new-orders");
+      console.log('✅ DB updated.');
+    })
+    .then(data => {
+      getUserById(db, orderId)
+      .then(data => {
+        const customer = data.rows[0].name;
+        console.log('🤪',customer);
+        sendOrderDecision(customer, text);
+        res.redirect("/orders/new-orders");
+      })
     })
     .catch(err => {
       res
