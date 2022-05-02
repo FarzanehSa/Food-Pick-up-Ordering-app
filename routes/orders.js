@@ -79,7 +79,6 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
     });
-
   });
 
 
@@ -122,4 +121,14 @@ module.exports = (db) => {
 };
 
 
+router.post("/new-orders", (req, res) => {
+  // const user = req.session.user;
+  // const cart = JSON.parse(req.cookies.cart)
+  const detail = req.body;
+  // console.log('❎ post order - user:',user);           // 🚨🚨🚨
+  // console.log('❎ post order - cart:',cart);           // 🚨🚨🚨
+  console.log('❎ post order - req-body:',detail);     // 🚨🚨🚨
 
+  // create an object to pass to query
+
+});

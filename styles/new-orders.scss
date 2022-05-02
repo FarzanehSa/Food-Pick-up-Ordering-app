@@ -1,12 +1,118 @@
+@import '_variables';
+
 #pending-orders-page {
 
   display: flex;
   flex-direction: column;
   font-size: 20px;
 
+  .manage-part {
+    position: sticky;
+    top: 120px;
+    z-index: 100;
+    width: 100%;
+    height: 150px;
+    background: $primery-background-image ;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
 
+    .m-title {
+      display: flex;
+      height: 100%;
+      align-items: flex-start;
+    }
 
+    .mid-m-tab {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      text-align:center;
 
+      .output-order-number {
+        display: flex;
+        background: $primery-background-image;
+        background-position: center;
+        border-radius: 50%;
+        width: 40%;
+        height: 40%;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 600;
+        color: black ;
+      }
+    }
+
+    .right-m-tab {
+      height: 100%;
+      width: 50%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      .reply-t {
+        display: flex;
+        align-items:center ;
+        justify-content: center;
+        flex-direction: column;
+        height: 110px;
+        font-size: 16px;
+        margin: 0.5em;
+        textarea {
+          width         : 100%;
+          height        : 4em;
+          padding       : 0em 0.7em;
+          // border        : none;
+          background    : $main-background-color;
+          resize        : none;
+          outline       : none;
+        }
+      }
+      .decision-part {
+        width: 50%;
+        height: 110px;
+        display:flex;
+        flex-direction: column;
+
+      .decision-buttons {
+        display:flex;
+        justify-content: space-evenly;
+        padding-top: 1em;
+      }
+        output {
+          display: none;
+        }
+
+        #accept {
+          @include button-back(115deg);
+          &:hover .front-accept {
+            transform: $transform;
+          }
+
+          .front-accept {
+            @include button-front(120deg, whitesmoke);
+            padding: 12px 25px;
+          }
+
+        }
+        #reject {
+          @include button-back(340deg);
+          &:hover .front-reject {
+            transform: $transform;
+          }
+
+          .front-reject {
+            @include button-front(345deg, whitesmoke);
+            padding: 12px 25px;
+          }
+        }
+      }
+    }
+  }
+  // ----------------
 
   .data-table {
     text-align: center;
@@ -31,7 +137,12 @@
     margin-right: 0.25em;
   }
 
-  // ----------------------------
+  .title {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 
   .row-detail-data {
     display: flex;
@@ -41,18 +152,29 @@
     align-items: center;
   }
 
-
-
-
-
-  .table-order-number{
+  .title-table-order-number{
     width: 12%;
     border-right: 0.5px solid whitesmoke;
   }
+
+  .table-order-number{
+    width: 7%;
+    border-right: 0.5px solid whitesmoke;
+  }
+
+  .select-row {
+    width: 5%;
+  }
+
+  input[type=checkbox] {
+    transform: scale(1.3);
+  }
+
   .table-date{
     width: 15%;
     border-right: 0.5px solid whitesmoke;
   }
+
   .table-user-name{
     width: 20%;
     border-right: 0.5px solid whitesmoke;
@@ -63,6 +185,7 @@
     width: 30%;
     border-right: 0.5px solid whitesmoke;
   }
+
   .table-pickup-time{
     width: 12%;
     border-right: 0.5px solid whitesmoke;
@@ -71,13 +194,5 @@
   .table-total{
     width: 12%;
     border-right: 0.5px solid whitesmoke;
-
   }
-
-
-
-
-
-
-
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Checkout</title>
+  <title>Pending Orders</title>
 
   <!-- icon -->
   <link rel="icon" href="/images/logo.png" type="image/x-icon" />
@@ -24,40 +24,76 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 
   <script type="text/javascript" src="/scripts/utilities.js"></script>
+  <script type="text/javascript" src="/scripts/management.js"></script>
 </head>
 
 <body>
   <%- include('partials/_header') %>
   <main>
     <div id="pending-orders-page">
-      <div id="management-tab">
-
+      <div class="manage-part">
+        <div class="m-title">
+          <h2>Management-Tab</h2>
+        </div>
+        <div class="mid-m-tab">
+          <div>
+            <span> Order Number : </span>
+          </div>
+          <div class="output-order-number">
+            <output id="selected-order"></output>
+          </div>
+        </div>
+        <div class="right-m-tab">
+          <div class="form-part">
+            <form id='order-accept' action="/orders/new-orders" method="POST">
+              <input id="hid-acc-id" type="hidden" name="accept" />
+              <div class="reply-t">
+                <label for="reply-text">message - input estimated ready time</label>
+                <textarea name="reply-text" id="replyText" maxlength="60" placeholder="...">Thank you for your order. It will be ready at </textarea>
+              </div>
+            </form>
+            <form id='order-reject' action="/orders/new-orders" method="POST">
+              <input id="hid-rej-id" type="hidden" name="reject" />
+            </form>
+          </div>
+          <div class="decision-part">
+            <div class="decision-buttons">
+              <button  type="submit" form="order-accept" id="accept">
+                <span class="front-accept">Accept</span>
+              </button>
+              <button  type="submit" form="order-reject" id="reject">
+                <span class="front-reject">Reject</span>
+              </button>
+            </div>
+            <output id="warning-m" ></output>
+          </div>
+        </div>
       </div>
       <div class="orders-table">
         <h2>Pending Orders</h2>
         <div class="data-table">
           <div class="group-table">
-            <div class="table-order-number">
+            <div class="title-table-order-number title">
               <span>Order Number</span>
             </div>
-            <div class="table-date">
+            <div class="table-date title">
               <span>Date</span>
             </div>
-            <div class="table-comment">
+            <div class="table-comment title">
               <span>Comment</span>
             </div>
-            <div class="table-pickup-time">
+            <div class="table-pickup-time title">
               <span>Pickup Time</span>
             </div>
-            <div class="table-user-name">
+            <div class="table-user-name title">
               <span>Customer</span>
             </div>
-            <div class="table-total">
+            <div class="table-total title">
               <span>Total</span>
             </div>
           </div>
           <div class="detail-table">
-            <div class="row-detail-data">
+            <div class="row-detail-data title">
               <div class="title-table-item">
                 <span>Item</span>
               </div>
@@ -68,11 +104,13 @@
           </div>
         </div>
         <hr/>
-
-
+        <form id="selected-order">
         <% for (const order of pendingOrders) { %>
           <div class="data-table">
             <div class="group-table">
+              <div class="select-row">
+                <input type="checkbox" class="checkbox" id="order<%= order.order_id %>" name="select-order" value="<%= order.order_id %>">
+              </div>
               <div class="table-order-number">
                 <span><%= order.order_id %></span>
               </div>
@@ -109,6 +147,7 @@
             </div>
           </div>
         <% } %>
+      </form>
       </div>
     </div>
   </main>
