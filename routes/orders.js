@@ -10,7 +10,8 @@ const { addOrderItem } = require('../db/queries/orders/02-addOrderItems');
 const { getAllOrderedItemsByStatus } = require('../db/queries/orders/05_getAllOrderedItemsByStatus');
 const { getAllOrdersByStatus } = require('../db/queries/orders//06-getAllOrdersByStatus');
 const { ordersTotalByStatus } = require('../db/queries/orders/07_ordersTotalByStatus');
-const { OrderReceivedAlert, createOrderInfoObject } = require('../javaScripts/helperFunctions.js');
+const { updateStatusById } = require('../db/queries/orders/08_updateStatusById');
+const { orderReceivedAlert, createOrderInfoObject, sendOrderDecision } = require('../javaScripts/helperFunctions.js');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -63,7 +64,7 @@ module.exports = (db) => {
       .then ( data => {
         console.log('✅ All items added to DB');                // 🚨🚨🚨
         // send owner message.
-        OrderReceivedAlert();
+        orderReceivedAlert();
         // delete cart cookie, cause order received server-side
         res.clearCookie('cart');
         res.redirect("/menu");
@@ -117,18 +118,36 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
+
+  router.post("/new-orders", (req, res) => {
+    const decision = req.body;
+    console.log(decision);
+    let orderId;
+    let statusId;
+    let text = "Your order accepted!"
+    if (decision.accept) {
+      orderId = decision.accept;
+      text = decision.replyText;
+      statusId = 1;
+      console.log('😍',orderId, text)
+    } else if (decision.reject) {
+      orderId = decision.reject;
+      statusId = 3;
+      console.log('😡',orderId);
+    }
+    updateStatusById(db, statusId, orderId)
+    .then(data => {
+      console.log(data.rows)
+      res.redirect("/orders/new-orders");
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
   return router;
 };
 
 
-router.post("/new-orders", (req, res) => {
-  // const user = req.session.user;
-  // const cart = JSON.parse(req.cookies.cart)
-  const detail = req.body;
-  // console.log('❎ post order - user:',user);           // 🚨🚨🚨
-  // console.log('❎ post order - cart:',cart);           // 🚨🚨🚨
-  console.log('❎ post order - req-body:',detail);     // 🚨🚨🚨
-
-  // create an object to pass to query
-
-});

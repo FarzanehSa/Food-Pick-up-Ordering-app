@@ -2,10 +2,20 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-const OrderReceivedAlert = () => {
+const orderReceivedAlert = () => {
   client.messages
     .create({
        body: 'A customer placed a new order.',
+       from: process.env.TWILIO_PHONE_NUMBER,
+       to: process.env.MY_PHONE_NUMBER
+     })
+    .then(message => console.log(message.sid));
+}
+
+const sendOrderDecision = (user, text) => {
+  client.messages
+    .create({
+       body: `${user}, ${text}`,
        from: process.env.TWILIO_PHONE_NUMBER,
        to: process.env.MY_PHONE_NUMBER
      })
@@ -49,5 +59,5 @@ const getAllItemsIdInCategory = function(categories, menuItems) {
   return categoryItems;
 }
 
-  module.exports = { OrderReceivedAlert, createOrderInfoObject, getAllItemsIdInCategory };
+  module.exports = { orderReceivedAlert, createOrderInfoObject, getAllItemsIdInCategory, sendOrderDecision};
 
