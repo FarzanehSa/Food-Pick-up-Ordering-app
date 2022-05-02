@@ -33,6 +33,11 @@ body {
     // border: $test;
     padding: 1em;
   }
+
+  // all links
+  a {
+    @include hover-focus;
+  }
 }
 
 
