@@ -77,7 +77,6 @@ const categoryDropdown = function(catList, catId) {
     $(`.dropdown-content${catId}`).slideUp("slow");
     $(`.dropdown${catId}`).find(".cat-arrow-up").css('display', 'none');
     $(`.dropdown${catId}`).find(".cat-arrow-down").css('display', 'block');
-    $(`.dropdown${catId}`).css('color', 'whitesmoke');
     $(`.dropdown${catId}`).css('color', 'gold');
   }
 }
