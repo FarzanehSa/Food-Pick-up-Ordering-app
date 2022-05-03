@@ -124,6 +124,21 @@ $(document).ready(function () {
     const catList = $( this).siblings().find(`.dropdown-content${catId}`);
     categoryDropdown(catList, catId);
   })
+  $('.dropdown5').click(function () {
+    const catId = $(this).attr('name');
+    const catList = $( this).siblings().find(`.dropdown-content${catId}`);
+    categoryDropdown(catList, catId);
+  })
+  $('.dropdown6').click(function () {
+    const catId = $(this).attr('name');
+    const catList = $( this).siblings().find(`.dropdown-content${catId}`);
+    categoryDropdown(catList, catId);
+  })
+  $('.dropdown7').click(function () {
+    const catId = $(this).attr('name');
+    const catList = $( this).siblings().find(`.dropdown-content${catId}`);
+    categoryDropdown(catList, catId);
+  })
 });
 
 
