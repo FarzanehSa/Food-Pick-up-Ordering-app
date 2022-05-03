@@ -5,29 +5,34 @@
         <img src="/images/logo.png">
       </div>
       <% if (user.access_level == 0) { %>
-        <div class="left-buttons">
-          <button class="nav-button"><a class="nav-link" href="/menu">Menu</a></button>
-          <button class="nav-button"><a class="nav-link" href="/my-orders">My Orders</a></button>
-        </div>
+      <div class="left-buttons">
+        <button class="nav-button"><a class="nav-link b-menu" href="/menu">Menu</a></button>
+        <button class="nav-button"><a class="nav-link b-my-orders" href="/my-orders">My Orders</a></button>
+      </div>
       <% } else {%>
-        <div class="left-buttons">
-          <button class="nav-button"><a class="nav-link" href="/orders/new-orders">New Orders</a></button>
-          <button class="nav-button"><a class="nav-link" href="/orders/inprogress-orders">Inprogress Orders</a></button>
-        </div>
+      <div class="left-buttons left-buttons-owner">
+        <button class="nav-button"><a class="nav-link b-new-order" href="/orders/new-orders">New Orders</a></button>
+        <button class="nav-button"><a class="nav-link b-in-progress" href="/orders/inprogress-orders">In Progress Orders</a></button>
+      </div>
       <% } %>
       <div class = "right-buttons">
         <!-- <span><i class="fa-solid fa-cart-shopping"></i></span> -->
         <% if (user.access_level == 0) { %>
         <form  class="goToCheckout button" action="/orders" method="GET">
           <button type="submit" class="nav-button" id="cart-button">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <output id="main-cart-qty">0</output>
+            <snap class="nav-link b-cart">
+              <i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <output id="main-cart-qty">0</output>
+            </snap>
           </button>
         </form>
         <% } %>
+        <span id="greeting" class="shadow">Hi <%= user.name %> ! </span>
         <form  class="logoutForm" action="/users/logout" method="POST">
-          <label style="margin: 1em">Hi <%= user.name %> ! </label>
-          <button class="nav-button" type="submit" >Logout</button>
+          <!-- <label id="greeting" class="shadow" style="margin: 1em">Hi <%= user.name %> ! </label> -->
+          <button class="nav-button" type="submit" >
+            <snap class="nav-link b-logout">Logout</snap>
+          </button>
         </form>
       </div>
     </div>
