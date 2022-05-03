@@ -68,7 +68,7 @@ app.get("/", (req, res) => {
   res.redirect("/users");
 });
 
-// ⚪️ this matches all routes and all methods- centralized error handler
+/* // ⚪️ this matches all routes and all methods- centralized error handler
 app.use((req, res) => {
   const user = req.session.user;
   if (!user) {
@@ -76,7 +76,7 @@ app.use((req, res) => {
     return;
   }
   res.redirect("/users");
-});
+}); */
 
 app.listen(PORT, () => {
   console.log(`Food pickup ordering app listening on port ${PORT}`);

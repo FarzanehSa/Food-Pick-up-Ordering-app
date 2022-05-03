@@ -1,4 +1,41 @@
 $(document).ready(function () {
+
+const createItemElement = (menuItem) => {
+  const $item = $(`
+  <div class="whole-item for-cookie-item" name="${menuItem.id}">
+    <div class="img-cart">
+      <img src="${menuItem.image_url}" class="for-cookie-img">
+      <div class="single-item-cart">
+        <button class="minus-qty-item"><i class="fa-solid fa-circle-minus"></i></button>
+        <output class="single-item-qty" class="counter button">0</output>
+        <button class="plus-qty-item"><i class="fa-solid fa-circle-plus"></i></button>
+        <button class="test" onclick="myFunction()">add to cart</button>
+      </div>
+    </div>
+    <div class="name-price-desc">
+      <div class="name-price">
+        <span class="for-cookie-name">${menuItem.name}</span>
+        <span class="price for-cookie-price" name="${menuItem.price}">$${menuItem.price / 100}</span>
+      </div>
+      <div class="item-desc">
+        <span style="font-weight: bold;">Description:</span>
+        <span>${menuItem.description}</span>
+      </div>
+    </div>
+    </div>
+  `);
+
+  return $item;
+}
+
+
+
+  function myFunction() {
+    document.getElementsByClassName("test").style.color = "blue";
+  }
+
+
+
   // update cart number base on cart cookie
   const updateCartNum = cart => {
     if (cart) {
@@ -17,6 +54,7 @@ $(document).ready(function () {
   updateCartNum(cart);          // ✅
 
   $('.plus-qty-item').click(function () {
+    console.log('👀');
     // Find the counter element
     const singleItemQty = $(this).parent().find('.single-item-qty');
     // Get the counter's text into a number variable
@@ -139,6 +177,39 @@ $(document).ready(function () {
     const catList = $( this).siblings().find(`.dropdown-content${catId}`);
     categoryDropdown(catList, catId);
   })
+
+
+
+  $('.to-html').click(function(event) {
+    // alert("Hello! I am an alert box!!");
+    event.preventDefault();
+    this.blur(); // Manually remove focus from clicked link.
+    const curId = $(this).val();
+    // console.log(curId);
+
+    $.ajax({
+      url: `/menu/${curId}`,
+      method: 'GET',
+      success: (data) => {
+        console.log('🍎',data);
+        const $item = createItemElement(data);
+        const $itemContainer = $('#item-container');
+        $itemContainer.empty();
+        $itemContainer.append($item);
+        $itemContainer.modal();
+      //   $itemContainer.dialog({
+      //     // autoOpen: false, // this should be false unless you want it opened from the start
+      //     height: 600,
+      //     width: 500,
+      //     modal: true
+      //  });
+      }
+    })
+  });
+
+
+
+
 });
 
 

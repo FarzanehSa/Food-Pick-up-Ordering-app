@@ -17,14 +17,21 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/modal.css" type="text/css" />
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
+  <!-- jQuery Modal -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
   <script type="text/javascript" src="/scripts/app.js"></script>
 
   <script type="text/javascript" src="/scripts/utilities.js"></script>
   <script type="text/javascript" src="/scripts/cart-counter.js"></script>
+  <script type="text/javascript" src="/scripts/item.js"></script>
 
 </head>
 
@@ -48,9 +55,11 @@
 
 
                   <div class="food-item for-cookie-item dropdown-content<%=category.id%>" name="<%= menuItems[x].id %>">
-                    <a href="http://localhost:8080/menu/<%= menuItems[x].id %>">
-                    <button name="click-item" class = "item-img"><img src="<%= menuItems[x].image_url %>" class="for-cookie-img"/></button>
-                    </a>
+                    <!-- <a href="http://localhost:8080/menu/<%= menuItems[x].id %>"> -->
+                    <!-- <a href="/" class="to-html"> -->
+                    <!-- <button name="click-item" class = "item-img" id="to-html"><img src="<%= menuItems[x].image_url %>" class="for-cookie-img"/></button> -->
+                    <button name="click-item" class = "item-img to-html" value="<%= menuItems[x].id %>">click me</button>
+                    <!-- </a> -->
                     <div class="item-info">
                       <div class="item-name">
                         <span class="for-cookie-name"><%= menuItems[x].name %></span>
@@ -74,7 +83,7 @@
       <% } %>
     </div>
 
-
+    <div id="item-container" class="modal"></div>
 
 
   </main>
