@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Pending Orders</title>
+
+  <!-- icon -->
+  <link rel="icon" href="/images/logo.png" type="image/x-icon" />
+
+  <!-- Source Sans Pro  300, 600, italic of each -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/in-progress-orders.css" type="text/css" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <script type="text/javascript" src="/scripts/utilities.js"></script>
+  <script type="text/javascript" src="/scripts/management.js"></script>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <main>
+    <div id="pending-orders-page">
+      <div class="manage-part">
+        <div class="m-title">
+          <h2>Management-Tab</h2>
+        </div>
+        <div class="mid-m-tab">
+          <div>
+            <span> Order Number : </span>
+          </div>
+          <div class="output-order-number">
+            <output id="selected-order"></output>
+          </div>
+        </div>
+        <div class="right-m-tab">
+          <form id='order-ready' action="/orders/in-progress-orders" method="POST">
+            <input id="hid-ready-id" type="hidden" name="ready" />
+            <button  type="submit" form="order-ready" id="ready">
+              <span class="front-ready">Ready for pickup</span>
+            </button>
+          </form>
+          <div class="warning-part">
+            <output id="warning-m" ></output>
+          </div>
+        </div>
+      </div>
+      <div class="orders-table">
+        <h2>In progress Orders</h2>
+        <div class="data-table">
+          <div class="group-table">
+            <div class="title-table-order-number title">
+              <span>Order Number</span>
+            </div>
+            <div class="table-date title">
+              <span>Date</span>
+            </div>
+            <div class="table-comment title">
+              <span>Comment</span>
+            </div>
+            <div class="table-pickup-time title">
+              <span>Pickup Time</span>
+            </div>
+            <div class="table-user-name title">
+              <span>Customer</span>
+            </div>
+            <div class="table-total title">
+              <span>Total</span>
+            </div>
+          </div>
+          <div class="detail-table">
+            <div class="row-detail-data title">
+              <div class="title-table-item">
+                <span>Item</span>
+              </div>
+              <div class="title-table-qty">
+                <span>Qty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <form id="selected-order">
+        <% for (const order of inProgressOrders) { %>
+          <div class="data-table">
+            <div class="group-table">
+              <div class="select-row">
+                <input type="checkbox" class="checkbox" id="order<%= order.order_id %>" name="select-order" value="<%= order.order_id %>">
+              </div>
+              <div class="table-order-number">
+                <span><%= order.order_id %></span>
+              </div>
+              <div class="table-date">
+                <span><%= order.order_time %></span>
+              </div>
+              <div class="table-comment">
+                <span><%= order.comment %></span>
+              </div>
+              <div class="table-pickup-time">
+                <span><%= order.pickup_time %></span>
+              </div>
+              <div class="table-user-name">
+                <span><%= order.customer_name %></span>
+              </div>
+              <div class="table-total">
+                <span>$<%= (ordersTotal[order.order_id]) / 100 %></span>
+              </div>
+            </div>
+            <div class="detail-table">
+              <% for (const item of itemsInOrder) { %>
+                <% if (item.order_id === order.order_id) { %>
+                <div class="row-detail-data">
+                  <div class="table-item">
+                    <span><%= item.item %></span>
+                  </div>
+                  <div class="table-qty">
+                    <span><%= item.qty %></span>
+                  </div>
+                </div>
+                <hr/>
+                <% }
+              } %>
+            </div>
+          </div>
+        <% } %>
+      </form>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

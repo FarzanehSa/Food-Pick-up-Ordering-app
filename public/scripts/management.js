@@ -15,6 +15,7 @@ $(document).ready(function () {
       $('#selected-order').val(selectedOrder);   // copy order-id in output box
       $('#hid-acc-id').val(selectedOrder);       // copy order-id in hidden input for accept form
       $('#hid-rej-id').val(selectedOrder);       // copy order-id in hidden input for reject form
+      $('#hid-ready-id').val(selectedOrder);       // copy order-id in hidden input for ready form
 
       // active submit buttons
       $('#pending-orders-page').find(':input[type=submit]').prop('disabled', false);
@@ -25,6 +26,7 @@ $(document).ready(function () {
       $('#selected-order').val(selectedOrder);
       $('#hid-acc-id').val(null);
       $('#hid-rej-id').val(null);
+      $('#hid-ready-id').val(null);
       // deactive submit buttons
       $('#pending-orders-page').find(':input[type=submit]').prop('disabled', true);
       // warning msg popup

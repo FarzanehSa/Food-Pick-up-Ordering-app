@@ -21,10 +21,12 @@
       display: flex;
       height: 100%;
       align-items: flex-start;
+      margin-right: 4em;
     }
 
     .mid-m-tab {
       height: 100%;
+      // width: 40%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -48,69 +50,30 @@
 
     .right-m-tab {
       height: 100%;
-      width: 50%;
+      width: 40%;
       display: flex;
-      justify-content: space-around;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
 
-      .reply-t {
-        display: flex;
-        align-items:center ;
-        justify-content: center;
-        flex-direction: column;
-        height: 110px;
-        font-size: 16px;
-        margin: 0.5em;
-        textarea {
-          width         : 100%;
-          height        : 4em;
-          padding       : 0em 0.7em;
-          // border        : none;
-          background    : $main-background-color;
-          resize        : none;
-          outline       : none;
+      #ready {
+        @include button-back(115deg);
+        &:hover .front-ready {
+          transform: $transform;
+        }
+
+        .front-ready {
+          @include button-front(120deg, whitesmoke);
+          background: hsl(119 54% 54%);
+          padding: 12px 25px;
         }
       }
-      .decision-part {
-        width: 50%;
-        height: 110px;
-        display:flex;
-        flex-direction: column;
-
-      .decision-buttons {
-        display:flex;
-        justify-content: space-evenly;
-        padding-top: 1em;
+      .warning-part {
+        height: 10px;
       }
-        output {
-          display: none;
-          font-style: italic;
-          align-self: center;
-        }
-
-        #accept {
-          @include button-back(115deg);
-          &:hover .front-accept {
-            transform: $transform;
-          }
-
-          .front-accept {
-            @include button-front(120deg, whitesmoke);
-            padding: 12px 25px;
-          }
-
-        }
-        #reject {
-          @include button-back(340deg);
-          &:hover .front-reject {
-            transform: $transform;
-          }
-
-          .front-reject {
-            @include button-front(345deg, whitesmoke);
-            padding: 12px 25px;
-          }
-        }
+      #warning-m {
+        // display: none;
+        font-style    : italic;
       }
     }
   }
