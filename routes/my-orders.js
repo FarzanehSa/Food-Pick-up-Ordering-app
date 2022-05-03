@@ -34,6 +34,14 @@ const groupOrders = function (orders) {
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const user = req.session.user;
+    if (!user) {
+      res.render("login");
+      return;
+    }
+    if (user.access_level === 1) {
+      res.redirect("/orders/new-orders");
+      return;
+    }
     getOrderByUser(db, user)
       .then(data => {
         const items = data.rows;

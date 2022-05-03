@@ -23,6 +23,10 @@ module.exports = (db) => {
     if (!user)  {
       res.redirect("/users");
     }
+    if (user.access_level === 1) {
+      res.redirect("/orders/new-orders");
+      return;
+    }
     if (req.cookies.cart) {
       const cart = JSON.parse(req.cookies.cart)
       // If cart is empty won't go to orders page!
@@ -88,6 +92,10 @@ module.exports = (db) => {
     const user = req.session.user;
     if (!user)  {
       res.redirect("/users");
+      return;
+    }
+    if (user.access_level !== 1) {
+      res.redirect("/menu");
       return;
     }
     getAllOrderedItemsByStatus(db, 0)
@@ -160,6 +168,10 @@ module.exports = (db) => {
     const user = req.session.user;
     if (!user)  {
       res.redirect("/users");
+      return;
+    }
+    if (user.access_level !== 1) {
+      res.redirect("/menu");
       return;
     }
     getAllOrderedItemsByStatus(db, 1)

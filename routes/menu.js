@@ -17,11 +17,15 @@ module.exports = (db) => {
   // Rendering menu.ejs with data from DB, menu_item table
   router.get("/", (req, res) => {
     const user = req.session.user;
-    console.log('🆘',req.cookies);
+    // console.log('🆘',req.cookies);
     if (!user)  {
       res.redirect("/users");
+      return;
     }
-
+    if (user.access_level === 1) {
+      res.redirect("/orders/new-orders");
+      return;
+    }
     getCategories(db)
       .then(data => {
         const categories = data.rows;
@@ -54,6 +58,11 @@ module.exports = (db) => {
     const user = req.session.user;
     if (!user)  {
       res.redirect("/users");
+      return;
+    }
+    if (user.access_level === 1) {
+      res.redirect("/orders/new-orders");
+      return;
     }
     const curId = req.params.id;
     getItemById(db, curId)

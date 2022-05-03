@@ -6,6 +6,7 @@
 */
 
 const express = require('express');
+const { redirect } = require('express/lib/response');
 const { getUserById } = require('../db/queries/database');
 const router  = express.Router();
 
@@ -15,9 +16,13 @@ module.exports = (db) => {
   // Otherwise redirect to menu page
   router.get("/", (req, res) => {
     const user = req.session.user;
-    console.log('🛗 user : ', user);      // 🚨🚨🚨
+    // console.log('🛗 user : ', user);      // 🚨🚨🚨
     if (!user) {
       res.render("login");
+      return;
+    }
+    if (user.access_level === 1) {
+      res.redirect("/orders/new-orders");
       return;
     }
     res.redirect("/menu");
@@ -27,7 +32,7 @@ module.exports = (db) => {
   // Set cookies with Id & access level
   // Redirect to menu page
   router.post('/', (req, res) => {
-    console.log('🛗 req.body: ',req.body)       // 🚨🚨🚨
+    // console.log('🛗 req.body: ',req.body)       // 🚨🚨🚨
     curUserId = req.body.id;
     getUserById(db, curUserId)
       .then(data => {
@@ -35,7 +40,7 @@ module.exports = (db) => {
         req.session.user= user;
         req.session.userId = user.id;
         req.session.accessLevel= user.access_level;
-        console.log('🛗 cookei ', req.session)   // 🚨🚨🚨
+        // console.log('🛗 cookei ', req.session)   // 🚨🚨🚨
         if (user.access_level === 1) {
           res.redirect("/orders/new-orders");
         } else {
