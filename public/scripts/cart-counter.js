@@ -17,6 +17,8 @@ $(document).ready(function () {
   updateCartNum(cart);          // ✅
 
   $('.plus-qty-item').click(function () {
+    // remove focus on element
+    $(this).blur();
     // Find the counter element
     const singleItemQty = $(this).parent().find('.single-item-qty');
     // Get the counter's text into a number variable
@@ -28,6 +30,7 @@ $(document).ready(function () {
   });
 
   $('.minus-qty-item').click(function () {
+    $(this).blur();
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
     if (singleItemQtyVal > 0) {
@@ -39,6 +42,7 @@ $(document).ready(function () {
 
   // by click on "add to cart" , set cart cookie and update cart icon number
   $('.add-to-cart').click(function () {
+    $(this).blur();
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
 
