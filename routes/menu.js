@@ -13,8 +13,7 @@ const { getAllItemsIdInCategory } = require('../javaScripts/helperFunctions.js')
 const router  = express.Router();
 
 module.exports = (db) => {
-  // get menu/
-  // Rendering menu.ejs with data from DB, menu_item table
+
   router.get("/", (req, res) => {
     const user = req.session.user;
     // console.log('🆘',req.cookies);
@@ -26,31 +25,22 @@ module.exports = (db) => {
       res.redirect("/orders/new-orders");
       return;
     }
-    getCategories(db)
-      .then(data => {
-        const categories = data.rows;
-        return categories;
-      })
-      .then (categories => {
-        getAllMenuItems(db)
-        .then(data => {
-          const menuItems = data.rows;
-          // list of all items in one category
-          const categoryItems = getAllItemsIdInCategory(categories, menuItems)
-          res.render("menu", { categoryItems, menuItems, categories, user});
-          return;
-        })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-        });
-      })
-      .catch(err => {
-        res
-        .status(500)
-        .json({ error: err.message });
-      });;
+
+    const f1 = getCategories(db);
+    const f2 = getAllMenuItems(db);
+    Promise.all([f1,f2])
+    .then(([r1,r2]) => {
+      const categories = r1.rows;
+      const menuItems = r2.rows;
+      const categoryItems = getAllItemsIdInCategory(categories, menuItems)
+      res.render("menu", { categoryItems, menuItems, categories, user});
+      return;
+    })
+    .catch(err => {
+      res
+      .status(500)
+      .json({ error: err.message });
+    });;
   });
 
   // menu/:id
@@ -67,18 +57,19 @@ module.exports = (db) => {
     }
     const curId = req.params.id;
     getItemById(db, curId)
-      .then(data => {
-        menuItem = data.rows[0];
-        // res.render("menu-item",{ menuItem, user });
-        // update and send json for AJAX - using modal
-        res.json(menuItem);
-        return;
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    .then(data => {
+      menuItem = data.rows[0];
+      // res.render("menu-item",{ menuItem, user });
+      // update and send json for AJAX - using modal
+      res.json(menuItem);
+      return;
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   });
+
   return router;
 };

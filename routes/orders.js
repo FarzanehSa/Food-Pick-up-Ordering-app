@@ -91,6 +91,7 @@ module.exports = (db) => {
     });
   });
 
+// ---------------------- PENDING ORDERS --------------------------------------
 
   router.get("/new-orders", (req, res) => {
     const user = req.session.user;
@@ -135,26 +136,21 @@ module.exports = (db) => {
       orderId = decision.accept;
       if (decision.replyText !== '') text = decision.replyText;
       statusId = 1;
-      // console.log('😍',orderId, text)
     } else if (decision.reject) {
       orderId = decision.reject;
       statusId = 3;
       text = "Sorry, We can't accept your order today."
-      // console.log('😡',orderId);
     }
     updateStatusById(db, statusId, orderId)
     .then(data => {
       console.log('✅ DB updated.');
+      return getUserById(db, orderId);
     })
     .then(data => {
-      getUserById(db, orderId)
-      .then(data => {
-        const customer = data.rows[0].name;
-        console.log('🤪',customer);
-        sendOrderDecision(customer, text);
-        res.redirect("/orders/new-orders");
-        return;
-      })
+      const customer = data.rows[0].name;
+      sendOrderDecision(customer, text);
+      res.redirect("/orders/new-orders");
+      return;
     })
     .catch(err => {
       res
@@ -163,7 +159,7 @@ module.exports = (db) => {
     });
   });
 
-// ---------------------- IN PROGRESS ORDERS
+// ---------------------- IN PROGRESS ORDERS --------------------------------------
 
   router.get("/in-progress-orders", (req, res) => {
     const user = req.session.user;
@@ -205,17 +201,15 @@ module.exports = (db) => {
     updateStatusById(db, statusId, orderId)
     .then(data => {
       console.log('✅ DB updated.');
+      return getUserById(db, orderId);
     })
     .then(data => {
-      getUserById(db, orderId)
-      .then(data => {
-        const customer = data.rows[0].name;
-        const text = "Your order is ready for pickup.";
-        console.log('🤪',customer);
-        sendOrderDecision(customer, text);
-        res.redirect("/orders/in-progress-orders");
-        return;
-      })
+      const customer = data.rows[0].name;
+      const text = "Your order is ready for pickup.";
+      console.log('🤪',customer);
+      sendOrderDecision(customer, text);
+      res.redirect("/orders/in-progress-orders");
+      return;
     })
     .catch(err => {
       res
