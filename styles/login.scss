@@ -3,13 +3,13 @@
 main {
   font-size: 17px;
   height: 100vh;
-  background-color: #595757;
-  background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
+  background-image: $primery-background-image;
 
   .nav-bar {
     display: flex;
     justify-content: center;
-    background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, black, rgb(27, 26, 26), grey, grey,  grey, grey, rgb(27, 26, 26), black);
+    align-items: flex-end;
+    background-image: $primery-background-image;
 
     .main-address {
       display: flex;
@@ -18,28 +18,50 @@ main {
       position: relative;
 
       .phone-email {
+        display: flex;
+        justify-content: space-between;
         visibility: hidden;
-        color: silver;
         position: absolute;
         right: 100%;
-        width: 220px;
+        width: 320px;
         border-radius: 20px 20px 0 20px;
-        padding-left: 14px;
-        padding-right: 8px;
-        background-color: rgb(0, 0, 0);
-        background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+        padding: 5px 8px 5px 14px;
+        background-image: $secondary-background-image;
+        color: brown;
+
+        .khaled-contact, .farzaneh-contact {
+          display: flex;
+          flex-direction: column;
+        }
+        .links-info {
+          text-align: left;
+          padding: 0;
+          border: none;
+          color: rgb(61, 61, 226);
+          background-color: rgb(0, 0, 0);
+          background-image: $secondary-background-image;
+          text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+            color: rgb(61, 61, 226);
+            font-size: 20px;
+          }
+        }
       }
     }
 
-    .contact {
-      color: black;
+    .contact, .location {
+      border-radius: 12px;
+      background: hsl(40deg, 100%, 57%);
+      font-weight: 600;
+      color: brown;
+      height: 40px;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
       border: none;
-      background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to right, rgb(133, 132, 132), rgb(161, 159, 159),  white);
 
       &:hover {
         color: rgb(61, 61, 226);
@@ -50,21 +72,6 @@ main {
     .logo {
       width: 180px;
     }
-
-    .location {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      border: none;
-      background: url("https://www.transparenttextures.com/patterns/brick-wall.png"), linear-gradient(to left, rgb(133, 132, 132), rgb(161, 159, 159),  white);
-
-      &:hover {
-        color: rgb(61, 61, 226);
-        cursor: pointer;
-      }
-    }
-
   }
 
   img {
@@ -86,7 +93,7 @@ main {
       display: flex;
       flex-direction: column;
       background-color: rgb(76, 51, 51);
-      background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+      background-image: $secondary-background-image;
       padding: 26px;
       border-radius: 15px;
 
@@ -96,17 +103,17 @@ main {
         margin-top: 3px;
 
         .login, .cancel {
+          font-weight: 600;
           border: none;
-          color: $button-font-color;
+          color: brown;
           padding: 6px 22px;
           text-align: center;
           text-decoration: none;
           display: inline-block;
           margin: 4px 2px;
           cursor: pointer;
-          border-radius: 16px;
-          background-color: $menu-background-color;
-          }
+          border-radius: 12px;
+          background: hsl(40deg, 100%, 57%);          }
           .cancel:hover {
             color: red;
           }
