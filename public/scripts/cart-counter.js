@@ -99,6 +99,18 @@ $(document).ready(function () {
     isHidden = !isHidden;
   });
 
+  $('.k-github').click(function () {
+    window.location.href = 'https://github.com/Khaled91Alkhatib';
+  });
+
+  $('.k-linkedin').click(function () {
+    window.location.href = 'https://www.linkedin.com/in/khaledalkhatib/';
+  });
+
+  $('.f-github').click(function () {
+    window.location.href = 'https://github.com/FarzanehSa';
+  });
+
   $('.location').click(function () {
     window.location.href = 'https://www.google.com/maps/place/CF+Toronto+Eaton+Centre/@43.6544382,-79.3828881,17z/data=!3m2!4b1!5s0x882b31b95f52582d:0x20b5c47effb49f3d!4m5!3m4!1s0x882b34cb510746bd:0x8b89147b8cbbc837!8m2!3d43.6544382!4d-79.3806994';
   });
