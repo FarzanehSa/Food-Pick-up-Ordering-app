@@ -62,6 +62,7 @@
       margin-bottom: 0.5em;
       @include button-back(25deg);
       @include hover-focus;
+      font-weight: 600;
 
       &:hover .front-add-to-cart {
         transform: $transform;
