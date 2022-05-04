@@ -102,9 +102,7 @@ const createItemElement = (menuItem) => {
       <button class="add-to-cart">
         <span class="front-add-to-cart">add to cart</span>
       </button>
-      <div class="item-desc">
-        <span class="desc-title">Description:</span>
-      </div>
+      <span class="desc-title">Description:</span>
       <span class="desc-text">${ menuItem.description }</span>
     </div>
   `);
