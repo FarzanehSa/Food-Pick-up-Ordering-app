@@ -79,4 +79,33 @@ const categoryDropdown = function(catList, catId) {
     $(`.dropdown${catId}`).find(".cat-arrow-down").css('display', 'block');
     $(`.dropdown${catId}`).css('color', 'gold');
   }
+};
+
+// Create single Item for MODAL
+const createItemElement = (menuItem) => {
+  const $item = $(`
+  <div class="whole-item for-cookie-item" name="${menuItem.id}">
+    <div class="img-cart">
+      <img src="${menuItem.image_url}" class="for-cookie-img">
+      <div class="single-item-cart">
+        <button class="minus-qty-item"><i class="fa-solid fa-circle-minus"></i></button>
+        <output class="single-item-qty" class="counter button">0</output>
+        <button class="plus-qty-item"><i class="fa-solid fa-circle-plus"></i></button>
+        <button class="add-to-cart">add to cart</button>
+      </div>
+    </div>
+    <div class="name-price-desc">
+      <div class="name-price">
+        <span class="for-cookie-name">${menuItem.name}</span>
+        <span class="price for-cookie-price" name="${menuItem.price}">$${menuItem.price / 100}</span>
+      </div>
+      <div class="item-desc">
+        <span style="font-weight: bold;">Description:</span>
+        <span>${menuItem.description}</span>
+      </div>
+    </div>
+    </div>
+  `);
+
+  return $item;
 }

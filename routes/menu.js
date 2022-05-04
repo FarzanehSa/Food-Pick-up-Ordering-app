@@ -68,7 +68,10 @@ module.exports = (db) => {
     getItemById(db, curId)
       .then(data => {
         menuItem = data.rows[0];
-        res.render("menu-item",{ menuItem, user });
+        // res.render("menu-item",{ menuItem, user });
+        // update and send json for AJAX - using modal
+        res.json(menuItem);
+        return;
       })
       .catch(err => {
         res

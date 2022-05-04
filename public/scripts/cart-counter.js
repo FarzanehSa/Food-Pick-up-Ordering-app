@@ -16,7 +16,7 @@ $(document).ready(function () {
   // update cart number when page loaded
   updateCartNum(cart);          // ✅
 
-  $('.plus-qty-item').click(function () {
+  $(document).on('click', '.plus-qty-item', function () {
     // remove focus on element
     $(this).blur();
     // Find the counter element
@@ -29,7 +29,7 @@ $(document).ready(function () {
     singleItemQty.val(singleItemQtyVal);
   });
 
-  $('.minus-qty-item').click(function () {
+  $(document).on('click', '.minus-qty-item', function () {
     $(this).blur();
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
 
   // by click on "add to cart" , set cart cookie and update cart icon number
-  $('.add-to-cart').click(function () {
+  $(document).on('click', '.add-to-cart', function () {
     $(this).blur();
     const singleItemQty = $(this).parent().find('.single-item-qty');
     let singleItemQtyVal = singleItemQty.val();
@@ -143,6 +143,34 @@ $(document).ready(function () {
     const catList = $( this).siblings().find(`.dropdown-content${catId}`);
     categoryDropdown(catList, catId);
   })
+
+  // click on item-image :
+  $('.single-item-modal').click(function(event) {
+    event.preventDefault();
+    this.blur(); // Manually remove focus from clicked link.
+    // get id that's saved in buttons value.
+    const curId = $(this).val();
+
+    // send ajax req. and create item and append that to itemContainer
+    $.ajax({
+      url: `/menu/${curId}`,
+      method: 'GET',
+      success: (data) => {
+        console.log('🍎',data);
+        const $item = createItemElement(data);
+        const $itemContainer = $('#item-container');
+        $itemContainer.empty();
+        $itemContainer.append($item);
+        $itemContainer.modal();
+      }
+    })
+  });
+
+
+
+
+
+
 });
 
 
