@@ -6,7 +6,8 @@ const getOrderByUser = (db, user) => {
   LEFT JOIN order_items ON orders.id = order_items.order_Id
   LEFT JOIN orders_status ON  orders.status_id = orders_status.id
   LEFT JOIN menu_items ON order_items.menu_item_id = menu_items.id
-  WHERE orders.user_id = $1;`, [user.id])
+  WHERE orders.user_id = $1
+  ORDER BY orders.id DESC;`, [user.id])
 };
 
 // AND orders_status.status = 1

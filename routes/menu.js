@@ -38,6 +38,7 @@ module.exports = (db) => {
           // list of all items in one category
           const categoryItems = getAllItemsIdInCategory(categories, menuItems)
           res.render("menu", { categoryItems, menuItems, categories, user});
+          return;
         })
       .catch(err => {
         res

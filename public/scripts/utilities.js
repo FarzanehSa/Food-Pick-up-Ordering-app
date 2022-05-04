@@ -84,26 +84,28 @@ const categoryDropdown = function(catList, catId) {
 // Create single Item for MODAL
 const createItemElement = (menuItem) => {
   const $item = $(`
-  <div class="whole-item for-cookie-item" name="${menuItem.id}">
-    <div class="img-cart">
-      <img src="${menuItem.image_url}" class="for-cookie-img">
-      <div class="single-item-cart">
-        <button class="minus-qty-item"><i class="fa-solid fa-circle-minus"></i></button>
+    <div class="whole-item for-cookie-item" name="${ menuItem.id }">
+      <div class="item-name">
+        <span class="for-cookie-name">${ menuItem.name }</span>
+      </div>
+      <div class="item-img">
+        <img src="${ menuItem.image_url }" class="for-cookie-img">
+      </div>
+      <div class="item-price">
+        <span class="price for-cookie-price" name="${ menuItem.price }">$${ menuItem.price / 100 }</span>
+      </div>
+      <div class="single-cart-addition">
+        <button class="minus-qty-item minus-plus"><i class="fa-solid fa-circle-minus"></i></button>
         <output class="single-item-qty" class="counter button">0</output>
-        <button class="plus-qty-item"><i class="fa-solid fa-circle-plus"></i></button>
-        <button class="add-to-cart">add to cart</button>
+        <button class="plus-qty-item minus-plus"><i class="fa-solid fa-circle-plus"></i></button>
       </div>
-    </div>
-    <div class="name-price-desc">
-      <div class="name-price">
-        <span class="for-cookie-name">${menuItem.name}</span>
-        <span class="price for-cookie-price" name="${menuItem.price}">$${menuItem.price / 100}</span>
-      </div>
+      <button class="add-to-cart">
+        <span class="front-add-to-cart">add to cart</span>
+      </button>
       <div class="item-desc">
-        <span style="font-weight: bold;">Description:</span>
-        <span>${menuItem.description}</span>
+        <span class="desc-title">Description:</span>
       </div>
-    </div>
+      <span class="desc-text">${ menuItem.description }</span>
     </div>
   `);
 

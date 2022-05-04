@@ -22,6 +22,7 @@ module.exports = (db) => {
     const user = req.session.user;
     if (!user)  {
       res.redirect("/users");
+      return;
     }
     if (user.access_level === 1) {
       res.redirect("/orders/new-orders");
@@ -32,9 +33,11 @@ module.exports = (db) => {
       // If cart is empty won't go to orders page!
       if (Object.keys(cart).length === 0) {
         res.redirect("/menu");
+        return;
       }
       // console.log("khaled", JSON.parse(req.cookies.cart))  // 🚨🚨🚨
       res.render("orders", {user, cart});
+      return;
     } else {
       res.redirect("/menu");
     }
@@ -73,6 +76,7 @@ module.exports = (db) => {
         // delete cart cookie, cause order received server-side
         res.clearCookie('cart');
         res.redirect("/menu");
+        return;
       })
       .catch(err => {
         res
@@ -118,6 +122,7 @@ module.exports = (db) => {
 
           // console.log('⏱', ordersTotal);     // 🚨🚨🚨
           res.render("new-orders", { itemsInOrder, pendingOrders, ordersTotal,  user});
+          return;
         })
       })
     })
@@ -155,6 +160,7 @@ module.exports = (db) => {
         console.log('🤪',customer);
         sendOrderDecision(customer, text);
         res.redirect("/orders/new-orders");
+        return;
       })
     })
     .catch(err => {
@@ -191,6 +197,7 @@ module.exports = (db) => {
           }
 
           res.render("in-progress-orders", { itemsInOrder, inProgressOrders, ordersTotal,  user});
+          return;
         })
       })
     })
@@ -216,6 +223,7 @@ module.exports = (db) => {
         console.log('🤪',customer);
         sendOrderDecision(customer, text);
         res.redirect("/orders/in-progress-orders");
+        return;
       })
     })
     .catch(err => {
@@ -227,5 +235,3 @@ module.exports = (db) => {
 
   return router;
 };
-
-

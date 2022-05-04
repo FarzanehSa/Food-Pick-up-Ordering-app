@@ -46,6 +46,7 @@ module.exports = (db) => {
       .then(data => {
         const items = data.rows;
         res.render('my-orders', { user, orders: groupOrders(items) });
+        return;
       });
   });
   return router;

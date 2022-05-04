@@ -26,6 +26,7 @@ module.exports = (db) => {
       return;
     }
     res.redirect("/menu");
+    return;
   });
 
   // post/users
@@ -43,9 +44,9 @@ module.exports = (db) => {
         // console.log('🛗 cookei ', req.session)   // 🚨🚨🚨
         if (user.access_level === 1) {
           res.redirect("/orders/new-orders");
-        } else {
-          res.redirect("/menu");
+          return;
         }
+        res.redirect("/menu");
         return;
       })
       .catch(err => {
@@ -60,6 +61,7 @@ module.exports = (db) => {
     res.clearCookie('cart')
     req.session = null;
     res.redirect("/users");
+    return;
   });
 
   return router;
