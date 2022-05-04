@@ -14,7 +14,7 @@ $warning-font-color         : Crimson;
 
 // background-image
 $primery-background-image     :url(/images/background2.jpg);
-$secondary-background-image     :url(/images/background1.jpg);
+$secondary-background-image   :url(/images/background1.jpg);
 
 // background
 $main-background-color          : #f9f9f9;
@@ -30,30 +30,30 @@ $test        : 2px solid black;
 
 @mixin hover-focus {
   &:hover, &:focus {
-    border: none;
-    outline: none;
+    border      : none;
+    outline     : none;
   }
 }
 
 // mixins can take parameters as well
 @mixin button-back($a) {
-  background: hsl($a 100% 32%);
-  border-radius: 12px;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  outline-offset: 4px;
+  background      : hsl($a 100% 32%);
+  border-radius   : 12px;
+  border          : none;
+  padding         : 0;
+  cursor          : pointer;
+  outline-offset  : 4px;
 }
 
 @mixin button-front($a, $b) {
-  display: block;
-  padding: 12px 42px;
-  border-radius: 12px;
-  font-size: 1.25rem;
-  background: hsl($a 100% 47%); // a in back +5
-  color: $b;
-  transform: translateY(-8px);
+  display         : block;
+  padding         : 12px 42px;
+  border-radius   : 12px;
+  font-size       : 1.25rem;
+  background      : hsl($a 100% 47%); // a in back +5
+  color           : $b;
+  transform       : translateY(-8px);
 }
 
 // for buttons
-$transform: translateY(-2px);
+$transform        : translateY(-2px);

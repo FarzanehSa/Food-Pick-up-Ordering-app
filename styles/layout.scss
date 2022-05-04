@@ -1,6 +1,41 @@
-// See: https://sass-lang.com/
+@import '_variables';
 
-// body,
-// html {
-//   // margin: 0;
-// }
+html {
+  box-sizing        : border-box;
+}
+*, *:before, *:after {
+  box-sizing        : inherit;
+}
+
+body {
+
+  background        : $primery-background-image;
+  // background-size  : cover;
+  background-size   : center;
+
+
+  //
+  font-family       : 'Source Sans Pro', sans-serif;
+  display           : flex;
+  flex-direction    : column;
+  width             : 100%;
+  min-width         : 500px;
+  padding           : 1em;
+  margin            : 0.5em;
+  padding-top       : 0em;
+  margin-top        : 0em;
+
+  font-size         : $primery-font-siza;
+  color             : $primery-font-color;
+  background-color  : $main-background-color;
+
+  main {
+    padding         : 1em;
+  }
+
+  // all links
+  a {
+    text-decoration : none;
+    @include hover-focus;
+  }
+}

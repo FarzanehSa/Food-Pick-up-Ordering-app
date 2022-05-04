@@ -2,163 +2,169 @@
 
 #pending-orders-page {
 
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
+  font-size           : 20px;
+  display             : flex;
+  flex-direction      : column;
 
   .manage-part {
-    position: sticky;
-    top: 120px;
-    z-index: 100;
-    width: 100%;
-    height: 150px;
-    background: $primery-background-image ;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
+    position          : sticky;
+    top               : 120px;
+    z-index           : 100;
+    height            : 150px;
+    width             : 100%;
+    background        : $primery-background-image ;
+    display           :flex;
+    justify-content   : space-between;
+    align-items       : center;
 
     .m-title {
-      display: flex;
-      height: 100%;
-      align-items: flex-start;
-      margin-right: 4em;
+      height          : 100%;
+      margin-right    : 4em;
+      display         : flex;
+      align-items     : flex-start;
     }
 
     .mid-m-tab {
-      height: 100%;
-      // width: 40%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      text-align:center;
+      height           : 100%;
+      // width            : 40%;
+      display           : flex;
+      flex-direction    : column;
+      align-items       : center;
+      justify-content   : space-evenly;
+      text-align        :center;
 
       .output-order-number {
-        display: flex;
-        background: $primery-background-image;
-        background-position: center;
-        border-radius: 50%;
-        width: 40%;
-        height: 40%;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        font-weight: 600;
-        color: black ;
+        height              : 40%;
+        width               : 40%;
+        border-radius       : 50%;
+        font-size           : 24px;
+        font-weight         : 600;
+        color               : black ;
+        background          : $primery-background-image;
+        background-position : center;
+        display             : flex;
+        align-items         : center;
+        justify-content     : center;
       }
     }
 
     .right-m-tab {
-      height: 100%;
-      width: 40%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: start;
+      height                : 100%;
+      width                 : 40%;
+      display               : flex;
+      flex-direction        : column;
+      justify-content       : center;
+      align-items           : start;
 
       #ready {
         @include button-back(115deg);
+        @include hover-focus;
+
         &:hover .front-ready {
-          transform: $transform;
+          transform         : $transform;
+        }
+
+        &:focus .front-ready {
+          transform         : $transform;
         }
 
         .front-ready {
           @include button-front(120deg, whitesmoke);
-          background: hsl(119 54% 54%);
-          padding: 12px 25px;
+          background        : hsl(119 54% 54%);
+          padding           : 12px 25px;
         }
       }
       .warning-part {
-        height: 10px;
+        height              : 10px;
       }
       #warning-m {
-        // display: none;
-        font-style    : italic;
+        display             : none;
+        font-style          : italic;
       }
     }
   }
   // ----------------
 
   .data-table {
-    text-align: center;
-    display: flex;
-    border: 1px solid whitesmoke;
-    width: 100%;
+    border                  : 1px solid whitesmoke;
+    width                   : 100%;
+    display                 : flex;
+    text-align              : center;
   }
 
   .group-table {
-    margin-top: 0.5em;
-    display: flex;
-    width: 70%;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
-    color: black;
-    font-weight: 600;
+    width                   : 70%;
+    margin-top              : 0.5em;
+    margin-left             : 0.25em;
+    margin-right            : 0.25em;
+    font-weight             : 600;
+    color                   : black;
+    display                 : flex;
   }
 
   .detail-table {
-    width: 30%;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
+    width                   : 30%;
+    margin-left             : 0.25em;
+    margin-right            : 0.25em;
   }
 
   .title {
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+    height                  : 100%;
+    display                 : flex;
+    justify-content         : center;
+    align-items             : center;
   }
 
   .row-detail-data {
-    display: flex;
-    color: black;
-    font-weight: 600;
-    justify-content: space-between;
-    align-items: center;
+    color                   : black;
+    font-weight             : 600;
+    display                 : flex;
+    justify-content         : space-between;
+    align-items             : center;
   }
 
   .title-table-order-number{
-    width: 12%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 12%;
+    border-right            : 0.5px solid whitesmoke;
   }
 
   .table-order-number{
-    width: 7%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 7%;
+    border-right            : 0.5px solid whitesmoke;
   }
 
   .select-row {
-    width: 5%;
+    width                   : 5%;
   }
 
   input[type=checkbox] {
-    transform: scale(1.3);
-    cursor: pointer;
+    transform               : scale(1.3);
+    cursor                  : pointer;
   }
 
   .table-date{
-    width: 15%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 15%;
+    border-right            : 0.5px solid whitesmoke;
   }
 
   .table-user-name{
-    width: 20%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 20%;
+    border-right            : 0.5px solid whitesmoke;
 
   }
 
   .table-comment{
-    width: 30%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 30%;
+    border-right            : 0.5px solid whitesmoke;
   }
 
   .table-pickup-time{
-    width: 12%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 12%;
+    border-right            : 0.5px solid whitesmoke;
   }
 
   .table-total{
-    width: 12%;
-    border-right: 0.5px solid whitesmoke;
+    width                   : 12%;
+    border-right            : 0.5px solid whitesmoke;
   }
 }

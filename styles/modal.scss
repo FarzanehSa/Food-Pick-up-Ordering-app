@@ -35,10 +35,10 @@
     }
 
     .item-price {
-      margin-bottom     : 0.5em;
-      font-size         : 24px;
-      font-weight       : 600;
-      color             : $secondary-font-color;
+      margin-bottom       : 0.5em;
+      font-size           : 24px;
+      font-weight         : 600;
+      color               : $secondary-font-color;
     }
 
     .single-cart-addition {
@@ -63,9 +63,9 @@
     .add-to-cart {
       @include button-back(25deg);
       @include hover-focus;
-      margin-top      : 0.5em;
-      margin-bottom   : 0.5em;
-      font-weight     : 600;
+      margin-top          : 0.5em;
+      margin-bottom       : 0.5em;
+      font-weight         : 600;
 
       &:hover .front-add-to-cart {
         transform : $transform;
@@ -77,20 +77,20 @@
 
       .front-add-to-cart {
         @include button-front(30deg, whitesmoke);
-        color     : $third-font-color;
-        padding   : 8px 16px;
+        color         : $third-font-color;
+        padding       : 8px 16px;
       }
     }
 
     .desc-title {
-      font-weight : 600;
-      align-self  : center;
+      font-weight     : 600;
+      align-self      : center;
     }
 
     .desc-text {
-      align-self    : center;
-      text-align    : justify;
-      text-align    : center;
+      align-self      : center;
+      text-align      : justify;
+      text-align      : center;
     }
   }
 }

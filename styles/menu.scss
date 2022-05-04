@@ -68,12 +68,14 @@ main {
       margin-right      : 0.5em;
       border-radius     : 50%;
     }
+
     &:hover, &:focus {
       border-radius   : 50%;
       // box-shadow: 0 1em 0.5em -0.3em;
-      cursor: pointer;
+      cursor          : pointer;
       animation       : Rotate 2s infinite;
     }
+
     @include hover-focus;
   }
 

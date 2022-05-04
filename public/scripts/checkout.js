@@ -64,12 +64,13 @@ $(document).ready(function () {
     }
   });
 
-    $('.checkout-plus-qty').click(function () {
+  $('.checkout-plus-qty').click(function () {
+    // remove focus on element
+    $(this).blur();
     // Find the counter element & update qty
     const singleItemQty = $(this).closest('.checkout-counter').find('.checkout-item-qty');
     let singleItemQtyVal = singleItemQty.val();
     singleItemQtyVal++;
-
     // find id and update cart, cookie & reload page
     singleItemQty.val(singleItemQtyVal);
     const itemId = $(this).closest('.price-on-right').find('.order-row').attr('name');
@@ -82,6 +83,8 @@ $(document).ready(function () {
   });
 
   $('.checkout-minus-qty').click(function () {
+    // remove focus on element
+    $(this).blur();
     // Find the counter element & update qty
     const singleItemQty = $(this).closest('.checkout-counter').find('.checkout-item-qty');
     let singleItemQtyVal = singleItemQty.val();
