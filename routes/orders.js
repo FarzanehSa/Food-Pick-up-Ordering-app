@@ -102,29 +102,22 @@ module.exports = (db) => {
       res.redirect("/menu");
       return;
     }
-    getAllOrderedItemsByStatus(db, 0)
-    .then(data => {
-      const itemsInOrder = data.rows;
-      getAllOrdersByStatus(db, 0)
-      .then(data => {
-        const pendingOrders = data.rows
-        ordersTotalByStatus(db, 0)
-        .then(data => {
-          const totalList = data.rows
-          // console.log('⏱', itemsInOrder);    // 🚨🚨🚨
-          // console.log('⏱', pendingOrders);   // 🚨🚨🚨
 
-          // change the format of totalList so we can use it with orderId as key!
-          let ordersTotal = {}
-          for (const row of totalList) {
-            ordersTotal[row.id] = row.total;
-          }
-
-          // console.log('⏱', ordersTotal);     // 🚨🚨🚨
-          res.render("new-orders", { itemsInOrder, pendingOrders, ordersTotal,  user});
-          return;
-        })
-      })
+    const f1 = getAllOrderedItemsByStatus(db, 0);
+    const f2 = getAllOrdersByStatus(db, 0);
+    const f3 = ordersTotalByStatus(db, 0);
+    Promise.all ([f1, f2, f3])
+    .then(([r1, r2, r3]) => {
+      const itemsInOrder = r1.rows;
+      const pendingOrders = r2.rows;
+      const totalList = r3.rows
+      // change the format of totalList so we can use it with orderId as key!
+      let ordersTotal = {}
+      for (const row of totalList) {
+        ordersTotal[row.id] = row.total;
+      }
+      res.render("new-orders", { itemsInOrder, pendingOrders, ordersTotal,  user});
+      return;
     })
     .catch(err => {
       res
@@ -170,6 +163,8 @@ module.exports = (db) => {
     });
   });
 
+// ---------------------- IN PROGRESS ORDERS
+
   router.get("/in-progress-orders", (req, res) => {
     const user = req.session.user;
     if (!user)  {
@@ -180,26 +175,22 @@ module.exports = (db) => {
       res.redirect("/menu");
       return;
     }
-    getAllOrderedItemsByStatus(db, 1)
-    .then(data => {
-      const itemsInOrder = data.rows;
-      getAllOrdersByStatus(db, 1)
-      .then(data => {
-        const inProgressOrders = data.rows
-        ordersTotalByStatus(db, 1)
-        .then(data => {
-          const totalList = data.rows
 
-          // change the format of totalList so we can use it with orderId as key!
-          let ordersTotal = {}
-          for (const row of totalList) {
-            ordersTotal[row.id] = row.total;
-          }
-
-          res.render("in-progress-orders", { itemsInOrder, inProgressOrders, ordersTotal,  user});
-          return;
-        })
-      })
+    const f1 = getAllOrderedItemsByStatus(db, 1);
+    const f2 = getAllOrdersByStatus(db, 1);
+    const f3 = ordersTotalByStatus(db, 1);
+    Promise.all ([f1, f2, f3])
+    .then(([r1, r2, r3]) => {
+      const itemsInOrder = r1.rows;
+      const inProgressOrders = r2.rows;
+      const totalList = r3.rows
+      // change the format of totalList so we can use it with orderId as key!
+      let ordersTotal = {}
+      for (const row of totalList) {
+        ordersTotal[row.id] = row.total;
+      }
+      res.render("in-progress-orders", { itemsInOrder, inProgressOrders, ordersTotal,  user});
+      return;
     })
     .catch(err => {
       res
