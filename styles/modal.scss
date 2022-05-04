@@ -1,5 +1,8 @@
 @import '_variables';
-
+  #item-container {
+    height: 900px;
+    width: 900px;
+  }
   .whole-item {
     color: black;
     display: flex;

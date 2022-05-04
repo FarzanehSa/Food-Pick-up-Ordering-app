@@ -70,6 +70,7 @@ module.exports = (db) => {
         menuItem = data.rows[0];
         // res.render("menu-item",{ menuItem, user });
         res.json(menuItem);
+        return;
       })
       .catch(err => {
         res
