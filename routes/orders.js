@@ -7,12 +7,20 @@
 const express = require('express');
 const { addOrder } = require('../db/queries/orders/01-addOrder');
 const { addOrderItem } = require('../db/queries/orders/02-addOrderItems');
+// For GET new-orders & in-progress-orders
 const { getAllOrderedItemsByStatus } = require('../db/queries/orders/05_getAllOrderedItemsByStatus');
 const { getAllOrdersByStatus } = require('../db/queries/orders//06-getAllOrdersByStatus');
 const { ordersTotalByStatus } = require('../db/queries/orders/07_ordersTotalByStatus');
+// For POST new-orders & in-progress-orders
 const { updateStatusById } = require('../db/queries/orders/08_updateStatusById');
 const { getUserById } = require('../db/queries/orders/09_getUserById');
+// For filter orders
+const { getOrderDetailById } = require('../db/queries/filter-orders/01-getOrderDetailById');
+const { getStatusNames } = require('../db/queries/filter-orders/02-getStatusNames');
+const { getOrdersDetail } = require('../db/queries/filter-orders/03-getOrdersDetail');
+//  Helper functions
 const { orderReceivedAlert, createOrderInfoObject, sendOrderDecision } = require('../javaScripts/helperFunctions.js');
+
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -206,7 +214,6 @@ module.exports = (db) => {
     .then(data => {
       const customer = data.rows[0].name;
       const text = "Your order is ready for pickup.";
-      console.log('🤪',customer);
       sendOrderDecision(customer, text);
       res.redirect("/orders/in-progress-orders");
       return;
@@ -218,5 +225,96 @@ module.exports = (db) => {
     });
   });
 
-  return router;
+// ---------------------- IN FILTER ORDERS --------------------------------------
+
+  router.get("/filter-orders", (req, res) => {
+    const user = req.session.user;
+    if (!user)  {
+      res.redirect("/users");
+      return;
+    }
+    if (user.access_level !== 1) {
+      res.redirect("/menu");
+      return;
+    }
+
+    const f1 = getOrdersDetail(db, {});
+    const f2 = getStatusNames(db);
+    // const f2 = getAllOrdersByStatus(db, 0);
+    // const f3 = ordersTotalByStatus(db, 0);
+    Promise.all ([f1,f2])
+    .then(([r1,r2]) => {
+      const orders = r1.rows;
+      const status = r2.rows;
+      console.log('👀',orders);
+      // const pendingOrders = r2.rows;
+      // const totalList = r3.rows
+      // change the format of totalList so we can use it with orderId as key!
+      // let ordersTotal = {}
+      // for (const row of totalList) {
+      //   ordersTotal[row.id] = row.total;
+      // }
+      res.render("filter-orders", { orders, status, user});
+      return;
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+
+  router.post("/filter-orders", (req, res) => {
+    const user = req.session.user;
+    if (!user)  {
+      res.redirect("/users");
+      return;
+    }
+    if (user.access_level !== 1) {
+      res.redirect("/menu");
+      return;
+    }
+    const x = req.body;
+    console.log('🤪',x);
+    const options = {
+      userId: Number(req.body.userId),
+      status: req.body.status,
+      orderDate: req.body.orderDate
+    }
+
+    const f1 = getOrdersDetail(db, options);
+    const f2 = getStatusNames(db);
+    Promise.all ([f1,f2])
+    .then(([r1,r2]) => {
+      const orders = r1.rows;
+      const status = r2.rows;
+      res.render("filter-orders", { orders, status, user});
+      return;
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+  router.get("/filter-orders/:id", (req, res) => {
+
+    const curId = req.params.id;
+
+    getOrderDetailById(db, curId)
+    .then(data => {
+      const curOrder = data.rows;
+      res.json(curOrder)
+      return;
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+ return router;
 };
