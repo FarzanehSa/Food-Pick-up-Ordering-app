@@ -36,35 +36,57 @@
           <h2>Management-Tab</h2>
         </div>
         <div class="right-m-tab">
-          <div class="form-input">
-            <form id='filtering' action="/orders/filter-orders" method="POST">
-              <label for="userId">Customer Id:</label>
-              <input type="text" name="userId" id="userId" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
-              <br><br>
-
-              <label for="status">Status:</label>
-              <select name="status" id="status">
-                <option value="" selected disabled hidden>----- any ------</option>
-                <% for (const option of status) { %>
-                  <option value=<%= option.name %>><%= option.name %></option>
-                <% } %>
-              </select>
-
-              <br><br>
-
-              <label for="orderDate">Order date:</label>
-              <input type="date" id="orderDate" name="orderDate">
-
-            </form>
-          </div>
+          <form id='filtering' action="/orders/filter-orders" method="POST">
+            <div class="form-input">
+              <div class="input-user">
+                <label for="userId">Customer Id:</label>
+                <input type="text" name="userId" id="userId" size="16.75" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                <br><br>
+              </div>
+              <div class="input-status">
+                <label for="status">Status:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                <select name="status" id="status">
+                  <option value="" selected disabled hidden>-------- any --------</option>
+                  <% for (const option of status) { %>
+                    <option value=<%= option.name %>><%= option.name %></option>
+                  <% } %>
+                </select>
+                <br><br>
+              </div>
+              <div class="input-date">
+                <label for="orderDate">Order date:&nbsp&nbsp</label>
+                <input type="date" id="orderDate" name="orderDate">
+              </div>
+            </div>
+          </form>
           <div class="form-submit">
-            <input type="submit" value="Submit" form="filtering">
-            <input type="submit" value="Reset" id="reset-filtering" form="filtering">
+            <button  type="submit" form="filtering" id="filter">
+              <span class="front-filter">Submit</span>
+            </button>
+            <form id='reset-filtering'  action="/orders/filter-orders" method="POST">
+              <input id="hid-ready-id" type="hidden" name="reset" value="0"/>
+            </form>
+            <button  type="submit" form="reset-filtering" id="reset">
+              <span class="front-reset">Reset</span>
+            </button>
           </div>
         </div>
       </div>
       <div class="orders-table">
         <h2>List of Orders</h2>
+        <% if (options.userId || options.status || options.orderDate) {%>
+          <h3> Selection:
+            <% if (options.userId) { %>
+              <span>&nbsp&nbspCustomer: <%= (options.userId) %>&nbsp&nbsp</span>
+            <% } %>
+            <% if (options.status) { %>
+              <span>&nbsp&nbspStatus: <%= (options.status) %>&nbsp&nbsp</span>
+            <% } %>
+            <% if (options.orderDate) { %>
+              <span>&nbsp&nbspDate: <%= (options.orderDate) %>&nbsp&nbsp</span>
+            <% } %>
+          </h3>
+        <% } %>
         <div class="data-table">
           <div class="show-detail">
             <span>---------</span>
@@ -88,7 +110,7 @@
         <% for (const order of orders) { %>
           <div class="data-table">
             <div class="show-detail">
-              <button class="order-details" name="select-order"  value="<%= order.order_id %>">Show Detail</button>
+              <button class="order-details" name="select-order"  value="<%= order.order_id %>">Details</button>
             </div>
             <div class="order-number">
               <span><%= order.order_id %></span>

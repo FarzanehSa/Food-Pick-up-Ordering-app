@@ -238,23 +238,15 @@ module.exports = (db) => {
       return;
     }
 
+    const options = {};
+
     const f1 = getOrdersDetail(db, {});
     const f2 = getStatusNames(db);
-    // const f2 = getAllOrdersByStatus(db, 0);
-    // const f3 = ordersTotalByStatus(db, 0);
     Promise.all ([f1,f2])
     .then(([r1,r2]) => {
       const orders = r1.rows;
       const status = r2.rows;
-      console.log('👀',orders);
-      // const pendingOrders = r2.rows;
-      // const totalList = r3.rows
-      // change the format of totalList so we can use it with orderId as key!
-      // let ordersTotal = {}
-      // for (const row of totalList) {
-      //   ordersTotal[row.id] = row.total;
-      // }
-      res.render("filter-orders", { orders, status, user});
+      res.render("filter-orders", { orders, status,options, user});
       return;
     })
     .catch(err => {
@@ -263,7 +255,6 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
-
 
   router.post("/filter-orders", (req, res) => {
     const user = req.session.user;
@@ -276,7 +267,6 @@ module.exports = (db) => {
       return;
     }
     const x = req.body;
-    console.log('🤪',x);
     const options = {
       userId: Number(req.body.userId),
       status: req.body.status,
@@ -289,7 +279,7 @@ module.exports = (db) => {
     .then(([r1,r2]) => {
       const orders = r1.rows;
       const status = r2.rows;
-      res.render("filter-orders", { orders, status, user});
+      res.render("filter-orders", { orders, status,options, user});
       return;
     })
     .catch(err => {
@@ -299,10 +289,9 @@ module.exports = (db) => {
     });
   });
 
+  // using ajax to bring the details form
   router.get("/filter-orders/:id", (req, res) => {
-
     const curId = req.params.id;
-
     getOrderDetailById(db, curId)
     .then(data => {
       const curOrder = data.rows;
