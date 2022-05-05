@@ -11,8 +11,8 @@ A food ordering experience for a taco restaurant. Customers can visit the websit
 
 ## Developers Team
 
-1- ["Khaled Alkhatib"](https://github.com/Khaled91Alkhatib),
-2- ["Farzaneh Sadegh"](https://github.com/FarzanehSa).
+1. ["Khaled Alkhatib"](https://github.com/Khaled91Alkhatib),
+2. ["Farzaneh Sadegh"](https://github.com/FarzanehSa).
 
 ## Screenshots
 
@@ -21,7 +21,7 @@ A food ordering experience for a taco restaurant. Customers can visit the websit
 !["Customer's view - Orders' page"](https://github.com/Khaled91Alkhatib/Food-Pick-up-Ordering-app/blob/feat/general-css/screenshots/Customer's%20view%20-%20Orders%20page.png?raw=true)
 !["Owner's view - placed orders' page"](https://github.com/Khaled91Alkhatib/Food-Pick-up-Ordering-app/blob/feat/general-css/screenshots/Owner's%20view%20-%20placed%20orders'%20page.png?raw=true)
 !["Owner's view - accepted orders' page"](https://github.com/Khaled91Alkhatib/Food-Pick-up-Ordering-app/blob/feat/general-css/screenshots/Owner's%20view%20-%20accepted%20orders'%20page.png?raw=true)
-1["SMS's the customer recieves"](https://github.com/Khaled91Alkhatib/Food-Pick-up-Ordering-app/blob/feat/general-css/screenshots/SMS:s%20the%20customer%20recieves%20.png?raw=true)
+!["SMS's the customer recieves"](https://github.com/Khaled91Alkhatib/Food-Pick-up-Ordering-app/blob/feat/general-css/screenshots/SMS:s%20the%20customer%20recieves%20.png?raw=true)
 
 ## Getting Started
 
