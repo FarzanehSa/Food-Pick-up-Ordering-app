@@ -28,7 +28,7 @@ const groupOrders = function (orders) {
     result[order.id].total += (order.price / 100) * order.qty;
   }
   // convert object of object to array of object
-  return Object.values(result);
+  return Object.values(result).reverse();
 };
 
 module.exports = (db) => {
