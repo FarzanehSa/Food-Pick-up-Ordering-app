@@ -49,9 +49,7 @@
             <% if (menuItems) { %>
               <% for (const x of categoryItems[category.id]) { %>
                 <div class="food-item for-cookie-item dropdown-content<%=category.id%>" name="<%= menuItems[x].id %>">
-                  <!-- <a href="http://localhost:8080/menu/<%= menuItems[x].id %>"> -->
                   <button name="click-item" class = "item-img single-item-modal" value="<%= menuItems[x].id %>"><img src="<%= menuItems[x].image_url %>" class="for-cookie-img"/></button>
-                  <!-- </a> -->
                   <div class="item-info">
                     <div class="item-name">
                       <span class="for-cookie-name"><%= menuItems[x].name %></span>
@@ -76,5 +74,6 @@
     <!-- Add div that contain modal (single item element) -->
     <div id="item-container" class="modal"></div>
   </main>
+  <%- include('partials/_footer') %>
 </body>
 </html>
