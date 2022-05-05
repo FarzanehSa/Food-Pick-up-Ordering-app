@@ -2,7 +2,8 @@
 
 ## Project Description
 
-A food ordering experience for a taco restaurant. Customers can visit the website, check the variety of items on the menu, select one or more dishes and order for pickup. Upon ordering, messages will be sent to the customer showing them the status of the order.
+A food ordering experience for a taco restaurant. Customers can visit the website, check the variety of items on the menu, select one or more dishes and order for pickup. Upon ordering, a message will be sent to the owner informing them that an order has been placed.
+In addition to that, owners have their own UI as well allowing them to see incoming orders, responding to them by accepting or rejecting the order and, if accepted, owners can mark the order once completed. Similar to whether accepting or rejecting an order, a message will be sent to the customer indicating the status of that order.
 
 ## Languages Used
 
