@@ -28,26 +28,6 @@ main {
         padding: 5px 8px 5px 14px;
         background-image: $secondary-background-image;
         color: brown;
-
-        .khaled-contact, .farzaneh-contact {
-          display: flex;
-          flex-direction: column;
-        }
-        .links-info {
-          text-align: left;
-          padding: 0;
-          border: none;
-          color: rgb(61, 61, 226);
-          background-color: rgb(0, 0, 0);
-          background-image: $secondary-background-image;
-          text-decoration: underline;
-
-          &:hover {
-            cursor: pointer;
-            color: rgb(61, 61, 226);
-            font-size: 20px;
-          }
-        }
       }
     }
 
