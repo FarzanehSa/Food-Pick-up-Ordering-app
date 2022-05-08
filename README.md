@@ -36,6 +36,7 @@ In addition to that, owners have their own UI as well allowing them to see incom
 5. Reset database: `npm run db:reset` (check the db folder to see what gets created and seeded in the SDB)
 6. Run the server: `npm run local` (note: nodemon is used, so you should not have to restart your server)
 7. Visit http://localhost:8080/
+8. SQL: midterm
 
 ## Dependencies 
 
